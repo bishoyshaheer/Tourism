@@ -16,11 +16,24 @@
     
     <dependencies>
         <dependency>
+            <groupId>eu.citysdk</groupId>
+            <artifactId>tourism-client-java</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+        
     </dependencies>
 
     <build>
