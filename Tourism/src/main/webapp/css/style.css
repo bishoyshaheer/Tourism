@@ -681,10 +681,11 @@ nav#filter a {
 
 
 .portfolio-item:hover .portfolio-desc {
-	padding-top: 20%;
+	padding-top: 10%;
 	height: 100%;
     transition: all 200ms ease-in-out 0s;
 	opacity: 1;
+        overflow: hidden;
 }
 
 .portfolio-item .portfolio-desc a {
@@ -695,8 +696,8 @@ nav#filter a {
 	text-decoration: none;
 }
 .portfolio-item .portfolio-desc .folio-info {
-	top:-20px;
-	padding: 30px;
+/*	top:-20px;
+	padding: 30px;*/
 	height: 0;
     opacity: 0;
     position: relative;
@@ -706,7 +707,8 @@ nav#filter a {
 	height: 100%;
     opacity: 1;
     transition: all 500ms ease-in-out 0s;
-	top:5px;
+	/*top:5px;*/
+        overflow: hidden;
 }
 
 
