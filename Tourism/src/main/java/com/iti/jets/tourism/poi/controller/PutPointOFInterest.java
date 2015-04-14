@@ -5,6 +5,8 @@
  */
 package com.iti.jets.tourism.poi.controller;
 
+import citysdk.tourism.client.poi.base.POIBaseType;
+import citysdk.tourism.client.poi.base.POITermType;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,10 +45,20 @@ public class PutPointOFInterest {
             final Charset UTF_8 = Charset.forName("UTF-8");
             String json = " {\"poi\":[{\"location\":{\"point\":[{\"Point\":{\"posList\":\"38.7623018491608 -9.09537155864194\",\"srsName\":\"http://www.opengis.net/def/crs/EPSG/0/4326\"},\"term\":\"entrance\"}]},\"label\":[{\"term\":\"primary\",\"value\":\"Primary Label\"}],\"description\":[{\"value\":\"Description 1\",\"lang\":\"pt-GB\"},{\"value\":\"Descricao 1\",\"lang\":\"pt-PT\"}],\"category\":[{\"term\":\"category\",\"value\":\"First Category\",\"lang\":\"pt-PT\"},{\"term\":\"category\",\"value\":\"test\",\"lang\":\"ar-EG\"}],\"time\":[{\"term\":\"open\",\"value\":\"Opening time\"}],\"link\":[],\"id\":\"55166577b9b3f20290d02ab9\",\"base\":\"http://citysdk.url.pt/pois/\",\"lang\":\"pt-PT\",\"created\":\"2015-03-28T08:25:27.1540000Z\",\"author\":{\"term\":\"primary\",\"value\":\"admin\"},\"license\":{\"term\":\"primary\",\"value\":\"open-data\"}}]}";
             // System.out.println(json);
-            String output = "{ \"poi\": { \"location\":{ \"point\":[ { \"Point\":{ \"posList\":\"38.7623018491608 -9.09537155864194\", \"srsName\":\"http://www.opengis.net/def/crs/EPSG/0/4326\" }, \"term\":\"entrance\" } ] }, \"label\":[ { \"term\":\"primary\", \"value\":\"Primary Label\"}], \"description\":[ { \"value\":\"Description 1\", \"lang\":\"pt-GB\" }, { \"value\":\"Descricao 1\", \"lang\":\"pt-PT\" } ], \"category\":[ { \"id\":\"5527b90db9b3f210dc46d4c8\" } ], \"time\":[ { \"term\":\"open\", \"value\":\"Opening time\" } ], \"link\":[ ], \"base\":\"http://citysdk.url.pt/pois/\", \"lang\":\"pt-PT\", \"created\":\"2013-02-05T12:31:11.0000000Z\", \"author\":{ \"term\":\"primary\", \"value\":\"CitySDK\" }, \"license\":{ \"term\":\"primary\", \"value\":\"open-data\" } } }";
+            POIBaseType outObj = new POIBaseType();
+            POITermType auther = new POITermType();
+            auther.setTerm("bishoy");
+            outObj.setAuthor(auther);
+            outObj.setBase("http://jes.iti.gov.eg/CitySDK/pois/");
+            outObj.setLang("pt-GB");
+            outObj.setValue("this is out very best first put using liberary");
+            
+            
+            
+            //String output = "{ \"poi\": { \"location\":{ \"point\":[ { \"Point\":{ \"posList\":\"38.7623018491608 -9.09537155864194\", \"srsName\":\"http://www.opengis.net/def/crs/EPSG/0/4326\" }, \"term\":\"entrance\" } ] }, \"label\":[ { \"term\":\"primary\", \"value\":\"Primary Label\"}], \"description\":[ { \"value\":\"Description 1\", \"lang\":\"pt-GB\" }, { \"value\":\"Descricao 1\", \"lang\":\"pt-PT\" } ], \"category\":[ { \"id\":\"5527b90db9b3f210dc46d4c8\" } ], \"time\":[ { \"term\":\"open\", \"value\":\"Opening time\" } ], \"link\":[ ], \"base\":\"http://citysdk.url.pt/pois/\", \"lang\":\"pt-PT\", \"created\":\"2013-02-05T12:31:11.0000000Z\", \"author\":{ \"term\":\"primary\", \"value\":\"CitySDK\" }, \"license\":{ \"term\":\"primary\", \"value\":\"open-data\" } } }";
 
-            output = new String(output.getBytes(), UTF_8);
-            System.out.println(output);
+//            output = new String(output.getBytes(), UTF_8);
+//            System.out.println(output);
             HttpURLConnection httpCon2 = (HttpURLConnection) url2.openConnection();
             httpCon2.setRequestProperty("Content-Type", "text/json");
             //   httpCon2.setRequestProperty("charset", "utf-8");
@@ -55,7 +67,7 @@ public class PutPointOFInterest {
             httpCon2.setRequestMethod("PUT");
             OutputStreamWriter out = new OutputStreamWriter(httpCon2.getOutputStream());
 
-            out.write(output);
+//            out.write(output);
             out.close();
             //  HttpURLConnection httpConn = (HttpURLConnection) connection;
             httpCon2.connect();
