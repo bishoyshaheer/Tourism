@@ -62,6 +62,7 @@ public class PutPointOFInterest {
             final Charset UTF_8 = Charset.forName("UTF-8");
             PointOfInterest poi = new PointOfInterest();
 
+
             Location loc = new Location();
             Geometry g = new Geometry();
             g.setPosList("38.7623018491608 -9.09537155864194");
@@ -125,13 +126,16 @@ public class PutPointOFInterest {
             output = new String(output.getBytes(), UTF_8);
             System.out.println(output);
 
+
+//            output = new String(output.getBytes(), UTF_8);
+//            System.out.println(output);
+
             HttpURLConnection httpCon2 = (HttpURLConnection) url2.openConnection();
             httpCon2.setRequestProperty("Content-Type", "text/json");
             httpCon2.setRequestProperty("Cookie", "SessionId=1");
             httpCon2.setDoOutput(true);
             httpCon2.setRequestMethod("PUT");
             OutputStreamWriter out = new OutputStreamWriter(httpCon2.getOutputStream());
-            out.write(output);
             out.close();
 
             httpCon2.connect();
