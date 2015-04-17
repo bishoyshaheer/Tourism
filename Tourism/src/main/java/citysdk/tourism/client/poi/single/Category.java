@@ -34,6 +34,13 @@ import java.util.List;
  */
 public class Category extends POI {
 	private List<Category> subCategories;
+        private String term;
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+        
+        
 	
 	public Category() {
 		super();
