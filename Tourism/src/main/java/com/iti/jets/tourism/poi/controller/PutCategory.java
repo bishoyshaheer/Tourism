@@ -23,15 +23,24 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Date;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 /**
  *
  * @author Marwa
  */
+@Path("/category")
 public class PutCategory {
 
-    public static void main(String[] args) {
-
+//    public static void main(String[] args) {
+    @GET
+    @Consumes("application/json")
+    @Produces("application/json")
+    public void insertPointOfInterest() {
         // TODO code application logic here
         try {
             CookieManager cookieManager = new CookieManager();
@@ -47,9 +56,9 @@ public class PutCategory {
             URL url2 = new URL("http://jes.iti.gov.eg/CitySDK/categories?List=poi");
             final Charset UTF_8 = Charset.forName("UTF-8");
 
-            //String json = "{ \"list\" : \"poi\", \"category\": { \"label\": [ { \"lang\": \"pt-PT\", \"term\": \"primary\",\"value\": \"Categoriateste\" }, { \"lang\": \"en-GB\", \"term\": \"primary\", \"value\": \"test\" } ], \"lang\": \"pt-PT\", \"term\": \"category\", \"value\": \"teste\" } }";
+            // String json = "{ \"list\" : \"poi\", \"category\": { \"label\": [ { \"lang\": \"pt-PT\", \"term\": \"primary\",\"value\": \"Categoriateste\" }, { \"lang\": \"en-GB\", \"term\": \"primary\", \"value\": \"test\" } ], \"lang\": \"pt-PT\", \"term\": \"category\", \"value\": \"teste\" } }";
             Category c = new Category();
-           
+
             POITermType ptt = new POITermType();
             ptt.setLang("pt-PT");
             ptt.setTerm("primary");
@@ -60,19 +69,21 @@ public class PutCategory {
             ptt2.setTerm("category2");
             ptt2.setValue("Category Two");
             c.addCategory(ptt2);
-            
+
             POIBaseType pbt = new POIBaseType();
-            pbt.setValue("cat");
-          //  c.setTerm("category");
-           // c.addLink(new POITermType());
+            pbt.setValue("category testing ");
+            c.setCreated(new Date());
+            c.setDeleted(null);
+            c.setTerm("primary");
+            // c.addLink(new POITermType());
             c.addDescription(pbt);
-            c.setTerm("cc");
+//            c.setTerm("Test");
             Gson jsn = new Gson();
-          //   String json = jsn.toJson(c);
+            //   String json = jsn.toJson(c);
             String json = "{\"list\" : \"poi\", \"category\": " + jsn.toJson(c) + "}";
             System.out.println(json);
             json = new String(json.getBytes(), UTF_8);
-              System.out.println(json);
+            System.out.println(json);
             HttpURLConnection httpCon2 = (HttpURLConnection) url2.openConnection();
             httpCon2.setRequestProperty("Content-Type", "text/json");
             httpCon2.setRequestProperty("Cookie", "SessionId=1");
@@ -103,8 +114,6 @@ public class PutCategory {
         }
     }
 }
-
-
 
 //            Category c1 = new Category();
 //            POITermType ptt2 = new POITermType();

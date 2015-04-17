@@ -14,7 +14,7 @@ $("#submit").click(function () {
         url: "http://localhost:8084/Tourism/rest/data",
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
-            alert(data);
+            alert("data.success");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert("error");
