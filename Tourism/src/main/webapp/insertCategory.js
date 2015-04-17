@@ -1,43 +1,41 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * the java Script Function that will Call After Press 
+ * Submit To Insert A Category
  */
 
 
-var imageData;
+
 
 $("#submit").click(function () {
 
-    alert("tets");
+    // prepare the Json Object to send to the web Service create as an object of POIBaseType
+
+    var data = {
+        "type": $("#catName").val(),
+        "value": $("#desc").val(),
+        "lang": $("#lang").val()
+    };
+
+    var jsonData = JSON.stringify(data);
+
+
+    /**** Prepare the ajax function to call the web Service ****/
     $.ajax({
-        type: "get",
+        type: "post",
         url: "http://localhost:8084/Tourism/rest/category",
-        dataType: 'json',
+        data: jsonData,
+        dataType: "json",
+        contentType: 'application/json',
+        complete: function (jqXHR, textStatus) {
+            alert("completed")
+        },
         success: function (data, textStatus, jqXHR) {
-            alert("data.success");
+            //  alert("data.success");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert("error");
+            // alert("error");
         }
     });
 })
 
 
-$("#POIImage").change(function () {
-    var preview = document.querySelector("img");
-    var file = $("#POIImage")[0].files[0];
-    var reader = new FileReader();
-
-    reader.onloadend = function () {
-        preview.src = reader.result;
-        imageData = reader.result;
-
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-    } else {
-        preview.src = "";
-    }
-});

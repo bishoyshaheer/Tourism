@@ -41,12 +41,16 @@ import javax.ws.rs.Produces;
 public class PutPointOFInterest {
 
     // public static void main(String[] args) {
-    @GET
+    @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public String insertPointOfInterest() {
+    public String insertPointOfInterest(String req) {
 
         try {
+            System.out.println("Start");
+            Gson gson = new Gson();
+            POIBaseType req2 = gson.fromJson(req, POIBaseType.class);
+            System.out.println("Req : " + req2.getValue());
             CookieManager cookieManager = new CookieManager();
             CookieHandler.setDefault(cookieManager);
             URL url = new URL("http://jes.iti.gov.eg/CitySDK/auth?username=admin&password=defaultCitySDKPassword");
