@@ -6,10 +6,9 @@
 
 var imageData;
 
-
-
-
 $("#submit").click(function () {
+
+    alert("tets");
     $.ajax({
         type: "get",
         url: "http://localhost:8084/Tourism/rest/data",
