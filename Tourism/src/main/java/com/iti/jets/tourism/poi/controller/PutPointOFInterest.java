@@ -53,7 +53,7 @@ public class PutPointOFInterest {
             outObj.setLang("pt-GB");
             outObj.setValue("this is out very best first put using liberary");
             
-            
+            System.out.println(" "+outObj.toString());
             
             //String output = "{ \"poi\": { \"location\":{ \"point\":[ { \"Point\":{ \"posList\":\"38.7623018491608 -9.09537155864194\", \"srsName\":\"http://www.opengis.net/def/crs/EPSG/0/4326\" }, \"term\":\"entrance\" } ] }, \"label\":[ { \"term\":\"primary\", \"value\":\"Primary Label\"}], \"description\":[ { \"value\":\"Description 1\", \"lang\":\"pt-GB\" }, { \"value\":\"Descricao 1\", \"lang\":\"pt-PT\" } ], \"category\":[ { \"id\":\"5527b90db9b3f210dc46d4c8\" } ], \"time\":[ { \"term\":\"open\", \"value\":\"Opening time\" } ], \"link\":[ ], \"base\":\"http://citysdk.url.pt/pois/\", \"lang\":\"pt-PT\", \"created\":\"2013-02-05T12:31:11.0000000Z\", \"author\":{ \"term\":\"primary\", \"value\":\"CitySDK\" }, \"license\":{ \"term\":\"primary\", \"value\":\"open-data\" } } }";
 
