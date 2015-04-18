@@ -187,7 +187,7 @@
                     'list': parameterTerms.POIS,
                     'limit': "10"
                 };
-        mClient.useVersion("1.0")
+        mClient.useVersion("1.0");
         try {
             mClient.getCategories(parameters, handleCategories, handleError);
         } catch (e) {
