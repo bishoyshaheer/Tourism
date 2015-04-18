@@ -36,10 +36,10 @@ $.fn.dataTableExt.oPagination.ellipses = {
     'oDefaults': {
         'iShowPages': 5
     },
-    'fnClickHandler': function(e) {
+    'fnClickHandler': function (e) {
         var fnCallbackDraw = e.data.fnCallbackDraw,
-            oSettings = e.data.oSettings,
-            sPage = e.data.sPage;
+                oSettings = e.data.oSettings,
+                sPage = e.data.sPage;
 
         if ($(this).is('[disabled]')) {
             return false;
@@ -51,13 +51,13 @@ $.fn.dataTableExt.oPagination.ellipses = {
         return true;
     },
     // fnInit is called once for each instance of pager
-    'fnInit': function(oSettings, nPager, fnCallbackDraw) {
+    'fnInit': function (oSettings, nPager, fnCallbackDraw) {
         var oClasses = oSettings.oClasses,
-            oLang = oSettings.oLanguage.oPaginate,
-            that = this;
+                oLang = oSettings.oLanguage.oPaginate,
+                that = this;
 
         var iShowPages = oSettings.oInit.iShowPages || this.oDefaults.iShowPages,
-            iShowPagesHalf = Math.floor(iShowPages / 2);
+                iShowPagesHalf = Math.floor(iShowPages / 2);
 
         $.extend(oSettings, {
             _iShowPages: iShowPages,
@@ -65,23 +65,23 @@ $.fn.dataTableExt.oPagination.ellipses = {
         });
 
         var oFirst = $('<a class="' + oClasses.sPageButton + ' ' + oClasses.sPageFirst + '">' + oLang.sFirst + '</a>'),
-            oPrevious = $('<a class="' + oClasses.sPageButton + ' ' + oClasses.sPagePrevious + '">' + oLang.sPrevious + '</a>'),
-            oNumbers = $('<span class="' + oClasses.sPageNumbers + '"></span>'),
-            oNext = $('<a class="' + oClasses.sPageButton + ' ' + oClasses.sPageNext + '">' + oLang.sNext + '</a>'),
-            oLast = $('<a class="' + oClasses.sPageButton + ' ' + oClasses.sPageLast + '">' + oLang.sLast + '</a>');
+                oPrevious = $('<a class="' + oClasses.sPageButton + ' ' + oClasses.sPagePrevious + '">' + oLang.sPrevious + '</a>'),
+                oNumbers = $('<span class="' + oClasses.sPageNumbers + '"></span>'),
+                oNext = $('<a class="' + oClasses.sPageButton + ' ' + oClasses.sPageNext + '">' + oLang.sNext + '</a>'),
+                oLast = $('<a class="' + oClasses.sPageButton + ' ' + oClasses.sPageLast + '">' + oLang.sLast + '</a>');
 
-        oFirst.click({ 'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'first' }, that.fnClickHandler);
-        oPrevious.click({ 'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'previous' }, that.fnClickHandler);
-        oNext.click({ 'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'next' }, that.fnClickHandler);
-        oLast.click({ 'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'last' }, that.fnClickHandler);
+        oFirst.click({'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'first'}, that.fnClickHandler);
+        oPrevious.click({'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'previous'}, that.fnClickHandler);
+        oNext.click({'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'next'}, that.fnClickHandler);
+        oLast.click({'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': 'last'}, that.fnClickHandler);
 
         // Draw
         $(nPager).append(oFirst, oPrevious, oNumbers, oNext, oLast);
     },
     // fnUpdate is only called once while table is rendered
-    'fnUpdate': function(oSettings, fnCallbackDraw) {
+    'fnUpdate': function (oSettings, fnCallbackDraw) {
         var oClasses = oSettings.oClasses,
-            that = this;
+                that = this;
 
         var tableWrapper = oSettings.nTableWrapper;
 
@@ -115,7 +115,7 @@ $.fn.dataTableExt.oPagination.ellipses = {
             if (oSettings._iCurrentPage === i) {
                 oNumber.attr('active', true).attr('disabled', true);
             } else {
-                oNumber.click({ 'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': i - 1 }, that.fnClickHandler);
+                oNumber.click({'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': i - 1}, that.fnClickHandler);
             }
 
             // Draw
@@ -133,11 +133,11 @@ $.fn.dataTableExt.oPagination.ellipses = {
     },
     // fnUpdateState used to be part of fnUpdate
     // The reason for moving is so we can access current state info before fnUpdate is called
-    'fnUpdateState': function(oSettings) {
+    'fnUpdateState': function (oSettings) {
         var iCurrentPage = Math.ceil((oSettings._iDisplayStart + 1) / oSettings._iDisplayLength),
-            iTotalPages = Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength),
-            iFirstPage = iCurrentPage - oSettings._iShowPagesHalf,
-            iLastPage = iCurrentPage + oSettings._iShowPagesHalf;
+                iTotalPages = Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength),
+                iFirstPage = iCurrentPage - oSettings._iShowPagesHalf,
+                iLastPage = iCurrentPage + oSettings._iShowPagesHalf;
 
         if (iTotalPages < oSettings._iShowPages) {
             iFirstPage = 1;

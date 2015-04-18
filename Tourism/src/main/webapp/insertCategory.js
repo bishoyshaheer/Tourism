@@ -27,7 +27,7 @@ $("#submit").click(function () {
         dataType: "json",
         contentType: 'application/json',
         complete: function (jqXHR, textStatus) {
-            alert("completed")
+            // alert("completed")
         },
         success: function (data, textStatus, jqXHR) {
             //  alert("data.success");

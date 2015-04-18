@@ -70,7 +70,7 @@ public class PutPointOFInterest {
 
             Location loc = new Location();
             Geometry g = new Geometry();
-            g.setPosList("38.7623018491608 -9.09537155864194");
+            g.setPosList(req2.getType());
             String srsname = g.getSrsname();
 
             Point p = new Point();
@@ -82,11 +82,11 @@ public class PutPointOFInterest {
 
             POITermType ptt = new POITermType();
             ptt.setTerm("primary");
-            ptt.setValue("Primary Label");
+            ptt.setValue(req2.getValue());
             poi.addLabel(ptt);
 
             POIBaseType pbt = new POIBaseType();
-            pbt.setValue("Descricao 1");
+            pbt.setValue(req2.getLang());
             pbt.setLang("pt-GB");
             poi.addDescription(pbt);
 
@@ -96,7 +96,7 @@ public class PutPointOFInterest {
 
             POITermType ptt3 = new POITermType();
             ptt3.setTerm("open");
-            ptt3.setValue("opening Time");
+            ptt3.setValue(req2.getBase());
             poi.addTime(ptt3);
 
             POITermType pttl = new POITermType();

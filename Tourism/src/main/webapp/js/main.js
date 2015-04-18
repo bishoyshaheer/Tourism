@@ -51,24 +51,24 @@
     }
     //search using minimal
     $("#search").submit(searchHandle);
-    
+
     //search handler function
-    function searchHandle (event){
+    function searchHandle(event) {
         event.preventDefault();
         $searchData = $("#searchData").val();
         var mClient = gClient,
-                        parameters = {
-                            'complete': $searchData,
-                            'limit': 12
-                        };
-                mClient.useVersion("1.0");
-                try {
-                    mClient.getPois(parameters, handleCategory, handleError);
-                } catch (e) {
-                    console.log(e);
-                }
+                parameters = {
+                    'complete': $searchData,
+                    'limit': 12
+                };
+        mClient.useVersion("1.0");
+        try {
+            mClient.getPois(parameters, handleCategory, handleError);
+        } catch (e) {
+            console.log(e);
+        }
     }
-    
+
     //search auto complete
 
     //a function to render a choosen category 
@@ -94,7 +94,7 @@
                     lng: $long,
                     title: $label,
                     infoWindow: {
-                        content: '<p>'+$label+'</p>'
+                        content: '<p>' + $label + '</p>'
                     }
                 });
             }

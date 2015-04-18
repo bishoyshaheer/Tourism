@@ -17,15 +17,15 @@
  *    table.fnGetColumnIndex( 'Browser' );
  */
 
-jQuery.fn.dataTableExt.oApi.fnGetColumnIndex = function ( oSettings, sCol )
+jQuery.fn.dataTableExt.oApi.fnGetColumnIndex = function (oSettings, sCol)
 {
-	var cols = oSettings.aoColumns;
-	for ( var x=0, xLen=cols.length ; x<xLen ; x++ )
-	{
-		if ( cols[x].sTitle.toLowerCase() == sCol.toLowerCase() )
-		{
-			return x;
-		}
-	}
-	return -1;
+    var cols = oSettings.aoColumns;
+    for (var x = 0, xLen = cols.length; x < xLen; x++)
+    {
+        if (cols[x].sTitle.toLowerCase() == sCol.toLowerCase())
+        {
+            return x;
+        }
+    }
+    return -1;
 };

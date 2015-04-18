@@ -6,6 +6,10 @@
 
 var imageData;
 
+$(document).ready(function () {
+
+});
+
 $("#submit").click(function () {
 
     var point = $("#locX").val() + " " + $("#locY").val();
