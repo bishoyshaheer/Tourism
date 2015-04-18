@@ -41,12 +41,16 @@ import javax.ws.rs.Produces;
 public class PutPointOFInterest {
 
     // public static void main(String[] args) {
-    @GET
+    @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public String insertPointOfInterest() {
+    public String insertPointOfInterest(String req) {
 
         try {
+            System.out.println("Start");
+            Gson gson = new Gson();
+            POIBaseType req2 = gson.fromJson(req, POIBaseType.class);
+            System.out.println("Req : " + req2.getValue());
             CookieManager cookieManager = new CookieManager();
             CookieHandler.setDefault(cookieManager);
             URL url = new URL("http://jes.iti.gov.eg/CitySDK/auth?username=admin&password=defaultCitySDKPassword");
@@ -66,7 +70,7 @@ public class PutPointOFInterest {
 
             Location loc = new Location();
             Geometry g = new Geometry();
-            g.setPosList("38.7623018491608 -9.09537155864194");
+            g.setPosList(req2.getType());
             String srsname = g.getSrsname();
 
             Point p = new Point();
@@ -78,11 +82,11 @@ public class PutPointOFInterest {
 
             POITermType ptt = new POITermType();
             ptt.setTerm("primary");
-            ptt.setValue("Primary Label");
+            ptt.setValue(req2.getValue());
             poi.addLabel(ptt);
 
             POIBaseType pbt = new POIBaseType();
-            pbt.setValue("Descricao 1");
+            pbt.setValue(req2.getLang());
             pbt.setLang("pt-GB");
             poi.addDescription(pbt);
 
@@ -92,7 +96,7 @@ public class PutPointOFInterest {
 
             POITermType ptt3 = new POITermType();
             ptt3.setTerm("open");
-            ptt3.setValue("opening Time");
+            ptt3.setValue(req2.getBase());
             poi.addTime(ptt3);
 
             POITermType pttl = new POITermType();

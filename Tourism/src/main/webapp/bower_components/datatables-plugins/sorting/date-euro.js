@@ -21,11 +21,11 @@
  *    } );
  */
 
- jQuery.extend( jQuery.fn.dataTableExt.oSort, {
-    "date-euro-pre": function ( a ) {
+jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+    "date-euro-pre": function (a) {
         var x;
 
-        if ( $.trim(a) !== '' ) {
+        if ($.trim(a) !== '') {
             var frDatea = $.trim(a).split(' ');
             var frTimea = frDatea[1].split(':');
             var frDatea2 = frDatea[0].split('/');
@@ -37,12 +37,10 @@
 
         return x;
     },
-
-    "date-euro-asc": function ( a, b ) {
+    "date-euro-asc": function (a, b) {
         return a - b;
     },
-
-    "date-euro-desc": function ( a, b ) {
+    "date-euro-desc": function (a, b) {
         return b - a;
     }
-} );
+});

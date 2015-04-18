@@ -26,6 +26,7 @@ import java.nio.charset.Charset;
 import java.util.Date;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -37,12 +38,17 @@ import javax.ws.rs.Produces;
 public class PutCategory {
 
 //    public static void main(String[] args) {
-    @GET
+    @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public void insertPointOfInterest() {
+    public void insertPointOfInterest(String req) {
         // TODO code application logic here
         try {
+            System.out.println("Start");
+            Gson gson = new Gson();
+            POIBaseType req2 = gson.fromJson(req, POIBaseType.class);
+            System.out.println("Req : " + req2.getValue());
+
             CookieManager cookieManager = new CookieManager();
             CookieHandler.setDefault(cookieManager);
             URL url = new URL("http://jes.iti.gov.eg/CitySDK/auth?username=admin&password=defaultCitySDKPassword");
@@ -62,24 +68,22 @@ public class PutCategory {
             POITermType ptt = new POITermType();
             ptt.setLang("pt-PT");
             ptt.setTerm("primary");
-            ptt.setValue("Category");
+            ptt.setValue(req2.getType());
             c.addLabel(ptt);
-            POITermType ptt2 = new POITermType();
-            ptt2.setLang("pt-PT");
-            ptt2.setTerm("category2");
-            ptt2.setValue("Category Two");
-            c.addCategory(ptt2);
 
+//            POITermType ptt2 = new POITermType();
+//            ptt2.setLang("pt-PT");
+//            ptt2.setTerm("category2");
+//            ptt2.setValue("Category Two");
+//            c.addCategory(ptt2);
             POIBaseType pbt = new POIBaseType();
-            pbt.setValue("category testing ");
+            pbt.setValue(req2.getValue());
             c.setCreated(new Date());
             c.setDeleted(null);
             c.setTerm("primary");
-            // c.addLink(new POITermType());
             c.addDescription(pbt);
-//            c.setTerm("Test");
             Gson jsn = new Gson();
-            //   String json = jsn.toJson(c);
+
             String json = "{\"list\" : \"poi\", \"category\": " + jsn.toJson(c) + "}";
             System.out.println(json);
             json = new String(json.getBytes(), UTF_8);

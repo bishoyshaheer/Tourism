@@ -23,16 +23,16 @@
  *         { type: 'datetime-us', targets: 0 }
  *       ]
  *    } );
-*/
+ */
 jQuery.extend(jQuery.fn.dataTableExt.oSort, {
     "datetime-us-pre": function (a) {
         var b = a.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4}) (\d{1,2}):(\d{1,2}) (am|pm|AM|PM|Am|Pm)/),
-            month = b[1],
-            day = b[2],
-            year = b[3],
-            hour = b[4],
-            min = b[5],
-            ap = b[6].toLowerCase();
+                month = b[1],
+                day = b[2],
+                year = b[3],
+                hour = b[4],
+                min = b[5],
+                ap = b[6].toLowerCase();
 
         if (hour == '12') {
             hour = '0';
@@ -65,22 +65,20 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
             return tt;
         }
     },
-
     "datetime-us-asc": function (a, b) {
-            return a - b;
+        return a - b;
     },
-
     "datetime-us-desc": function (a, b) {
         return b - a;
     }
 });
 
 jQuery.fn.dataTableExt.aTypes.unshift(
-    function (sData) {
-        if (sData !== null && sData.match(/\d{1,2}\/\d{1,2}\/\d{2,4} \d{1,2}:\d{1,2} (am|pm|AM|PM|Am|Pm)/)) {
+        function (sData) {
+            if (sData !== null && sData.match(/\d{1,2}\/\d{1,2}\/\d{2,4} \d{1,2}:\d{1,2} (am|pm|AM|PM|Am|Pm)/)) {
 
-            return 'datetime-us';
+                return 'datetime-us';
+            }
+            return null;
         }
-        return null;
-    }
 );

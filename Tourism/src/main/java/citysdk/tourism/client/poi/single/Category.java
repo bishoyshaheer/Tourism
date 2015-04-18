@@ -20,6 +20,7 @@
  */
 package citysdk.tourism.client.poi.single;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ import java.util.List;
  * @author Pedro Cruz
  *
  */
-public class Category extends POI {
+public class Category extends POI{
 	private List<Category> subCategories;
         private String term;
 

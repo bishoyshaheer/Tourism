@@ -45,11 +45,9 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
         }
         return Number(uniTime);
     },
-
     "time-uni-asc": function (a, b) {
         return ((a < b) ? -1 : ((a > b) ? 1 : 0));
     },
-
     "time-uni-desc": function (a, b) {
         return ((a < b) ? 1 : ((a > b) ? -1 : 0));
     }

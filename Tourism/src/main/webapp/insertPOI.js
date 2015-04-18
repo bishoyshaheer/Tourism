@@ -6,18 +6,39 @@
 
 var imageData;
 
+$(document).ready(function () {
+
+});
+
 $("#submit").click(function () {
 
-    alert("tets");
+    var point = $("#locX").val() + " " + $("#locY").val();
+    // alert(point)
+    var poi = {
+        "value": $("#POIName").val(),
+        "type": point,
+        "base": $("#openHour").val(),
+        "lang": $("#desc").val(),
+        "href": imageData
+    };
+
+    var jsonData = JSON.stringify(poi);
+    // alert(poi.value)
+
     $.ajax({
-        type: "get",
+        type: "post",
         url: "http://localhost:8084/Tourism/rest/data",
-        dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
-            alert("data.success");
+        data: jsonData,
+        dataType: "json",
+        contentType: 'application/json',
+        complete: function (jqXHR, textStatus) {
+            alert("completed")
+        },
+        success: function (data, textStatus) {
+            // alert("data.success");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert("error");
+            // alert(textStatus);
         }
     });
 })
@@ -42,14 +63,7 @@ $("#POIImage").change(function () {
 });
 
 
-//  var point = $("#locX").val() + $("#locY").val();
-//    var poi = {
-//        label: $("#POIName").val(),
-//        point: point,
-//        open: $("#openHour").val(),
-//        desc: $("#desc").val(),
-//        image: imageData
-//    }
+
 //    $.get("http://localhost:8084/Tourism/rest/data", poi
 //            , function (data) {
 //                if (data.success === true) {

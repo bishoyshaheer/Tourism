@@ -20,6 +20,7 @@
  */
 package citysdk.tourism.client.poi.base;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -44,7 +45,7 @@ import java.util.Date;
  * @author Pedro Cruz
  *
  */
-public class POIBaseType {
+public class POIBaseType implements Serializable{
 	private String id;
 	private String value;
 	private String href;

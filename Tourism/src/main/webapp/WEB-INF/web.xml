@@ -4,13 +4,13 @@
     <display-name>Restful Web Application</display-name>
 
     <!--<servlet>-->
-        <!--<servlet-name>jersey-serlvet</servlet-name>-->
-        <!--<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>-->
-        <!--<init-param>-->
-            <!--<param-name>com.sun.jersey.config.property.packages</param-name>-->
-            <!--<param-value>jets.test</param-value>-->
-        <!--</init-param>-->
-        <!--<load-on-startup>1</load-on-startup>-->
+    <!--<servlet-name>jersey-serlvet</servlet-name>-->
+    <!--<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>-->
+    <!--<init-param>-->
+    <!--<param-name>com.sun.jersey.config.property.packages</param-name>-->
+    <!--<param-value>jets.test</param-value>-->
+    <!--</init-param>-->
+    <!--<load-on-startup>1</load-on-startup>-->
     <!--</servlet>-->
 
     <servlet>
