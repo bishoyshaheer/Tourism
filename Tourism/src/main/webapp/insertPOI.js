@@ -19,14 +19,16 @@ $("#submit").click(function () {
         "type": point,
         "base": $("#openHour").val(),
         "lang": $("#desc").val(),
-        "href": imageData
+        "imageData": imageData
     };
 
+   // alert(imageData);
+
     var jsonData = JSON.stringify(poi);
-    // alert(poi.value)
+  
 
     $.ajax({
-        type: "post",
+       type: "post",
         url: "http://localhost:8084/Tourism/rest/data",
         data: jsonData,
         dataType: "json",
@@ -64,18 +66,3 @@ $("#POIImage").change(function () {
 
 
 
-//    $.get("http://localhost:8084/Tourism/rest/data", poi
-//            , function (data) {
-//                if (data.success === true) {
-//                    console.log(data.success);
-//
-//                } else {
-//                    $("#error").html(
-//                            "<div class=\"alert alert-danger alert-dismissable\">" +
-//                            "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>" +
-//                            "data error" +
-//                            "</div>"
-//                            )
-//                }
-//            })
-//
