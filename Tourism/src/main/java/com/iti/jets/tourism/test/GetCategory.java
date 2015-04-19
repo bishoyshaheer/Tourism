@@ -39,15 +39,21 @@ public class GetCategory {
         TourismClient tourismClient = TourismClientFactory.getInstance().getClient(url);
         tourismClient.useVersion("1.0");
         ParameterList list = new ParameterList();
+
+        // the parameter list according to the type of categories to be returned
         list.add(new Parameter(ParameterTerms.LIST, ParameterTerms.POIS.getTerm()));
         Category cat = tourismClient.getCategories(list);
         List<Category> categories;
 
+        // get the categories 
         categories = cat.getSubCategories();
 
+        //iterate through the list to return IDs
         for (Category categorie : categories) {
             List<POITermType> cat2 = categorie.getLabel();
             System.out.println(categorie.getId());
+
+            // iterate inside one of categories to return its value
             for (POITermType cat1 : cat2) {
                 catName.add(cat1.getValue());
 
