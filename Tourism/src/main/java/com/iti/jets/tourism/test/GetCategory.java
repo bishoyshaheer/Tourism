@@ -47,9 +47,10 @@ public class GetCategory {
 
         for (Category categorie : categories) {
             List<POITermType> cat2 = categorie.getLabel();
+            System.out.println(categorie.getId());
             for (POITermType cat1 : cat2) {
                 catName.add(cat1.getValue());
-                System.out.println(cat1.getValue());
+
             }
         }
 

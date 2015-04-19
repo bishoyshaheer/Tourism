@@ -67,7 +67,7 @@ public class PutPointOFInterest {
             final Charset UTF_8 = Charset.forName("UTF-8");
 //         
             PointOfInterest poi = new PointOfInterest();
-
+          //  poi.setId("2345");
             Location loc = new Location();
             Geometry g = new Geometry();
             g.setPosList(req2.getType());
