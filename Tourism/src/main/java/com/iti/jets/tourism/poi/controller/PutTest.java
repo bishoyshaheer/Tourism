@@ -5,6 +5,7 @@
  */
 package com.iti.jets.tourism.poi.controller;
 
+import citysdk.tourism.client.poi.single.Category;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,6 +77,8 @@ public class PutTest {
                             }
 
                         }
+                        
+                        
 
                         System.out.println("cookieValue:" + cookieValue);
                         System.out.println("expires:" + expires);
