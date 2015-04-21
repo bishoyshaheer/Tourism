@@ -56,10 +56,12 @@ public class PutPointOFInterest {
             System.out.println("Start");
             Gson gson = new Gson();
             POIBaseType req2 = gson.fromJson(req, POIBaseType.class);
-           // System.out.println("Req : " + req2.getImageData());
-            String x = req2.getImageData();
-            String y = x.substring(x.indexOf(",") + 1);
-            readImage(y);
+            // System.out.println("Req : " + req2.getImageData());
+            if (req2.getImageData() != "" && req2.getImageData() != null) {
+                String x = req2.getImageData();
+                String y = x.substring(x.indexOf(",") + 1);
+                readImage(y);
+            }
             // InputStream stream = new ByteArrayInputStream(Base64.decode(req2.getImageData().getBytes(), Base64.DEFAULT));
             CookieManager cookieManager = new CookieManager();
             CookieHandler.setDefault(cookieManager);
@@ -136,10 +138,12 @@ public class PutPointOFInterest {
             POIS pos = new POIS();
             pos.add(poi);
             Gson jsn = new Gson();
+
             String output
                     = output = "{\"poi\": " + jsn.toJson(poi) + "}";
             output = new String(output.getBytes(), UTF_8);
             System.out.println(output);
+
             HttpURLConnection httpCon2 = (HttpURLConnection) url2.openConnection();
             httpCon2.setRequestProperty("Content-Type", "text/json");
             //   httpCon2.setRequestProperty("charset", "utf-8");
@@ -163,13 +167,14 @@ public class PutPointOFInterest {
             System.out.println(new String(br3));
 
             httpCon2.disconnect();
+            return "{\"success\": true}";
             // System.out.println(results.toString());
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return "{\"success\": true}";
+        return "{\"Fail\": error}";
     }
 
     public static void readImage(String imageString) {

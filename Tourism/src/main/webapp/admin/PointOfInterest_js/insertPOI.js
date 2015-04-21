@@ -22,25 +22,29 @@ $("#submit").click(function () {
         "imageData": imageData
     };
 
-   // alert(imageData);
+    // alert(imageData);
 
     var jsonData = JSON.stringify(poi);
-  
+
 
     $.ajax({
-       type: "post",
+        type: "post",
         url: "http://localhost:8084/Tourism/rest/data",
         data: jsonData,
         dataType: "json",
         contentType: 'application/json',
         complete: function (jqXHR, textStatus) {
-            alert("completed")
+            //  alert("completed")
         },
         success: function (data, textStatus) {
-            // alert("data.success");
+           $("#success").html("<div class=\"alert alert-success\">"+
+                                "success"+ 
+                            "</div>");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            // alert(textStatus);
+            $("#success").html("<div class=\"alert alert-danger\">"+
+                               textStatus+ 
+                            "</div>");
         }
     });
 })

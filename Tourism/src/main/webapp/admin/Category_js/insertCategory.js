@@ -30,10 +30,14 @@ $("#submit").click(function () {
             // alert("completed")
         },
         success: function (data, textStatus, jqXHR) {
-            //  alert("data.success");
+            $("#success").html("<div class=\"alert alert-success\">"+
+                                "success"+ 
+                            "</div>");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            // alert("error");
+            $("#success").html("<div class=\"alert alert-danger\">"+
+                                textStatus+ 
+                            "</div>");
         }
     });
 })
