@@ -29,15 +29,15 @@ $("#submit").click(function () {
         complete: function (jqXHR, textStatus) {
             // alert("completed")
         },
-        success: function (data, textStatus, jqXHR) {
-            $("#success").html("<div class=\"alert alert-success\">"+
-                                "success"+ 
-                            "</div>");
+        success: function (data, textStatus) {
+            $(".demo-container").append("<div class=\"alert alert-success\">" +
+                    "data inserted successFully" +
+                    "</div>");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $("#success").html("<div class=\"alert alert-danger\">"+
-                                textStatus+ 
-                            "</div>");
+            $(".demo-container").append("<div class=\"alert alert-danger\">" +
+                    textStatus +
+                    "</div>");
         }
     });
 })

@@ -37,14 +37,14 @@ $("#submit").click(function () {
             //  alert("completed")
         },
         success: function (data, textStatus) {
-           $("#success").html("<div class=\"alert alert-success\">"+
-                                "success"+ 
-                            "</div>");
+            $(".demo-container").append("<div class=\"alert alert-success\">" +
+                    "data inserted successFully" +
+                    "</div>");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $("#success").html("<div class=\"alert alert-danger\">"+
-                               textStatus+ 
-                            "</div>");
+            $(".demo-container").append("<div class=\"alert alert-danger\">" +
+                    textStatus +
+                    "</div>");
         }
     });
 })
