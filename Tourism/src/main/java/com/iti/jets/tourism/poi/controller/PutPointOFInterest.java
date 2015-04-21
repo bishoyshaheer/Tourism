@@ -56,7 +56,7 @@ public class PutPointOFInterest {
             System.out.println("Start");
             Gson gson = new Gson();
             POIBaseType req2 = gson.fromJson(req, POIBaseType.class);
-            System.out.println("Req : " + req2.getImageData());
+           // System.out.println("Req : " + req2.getImageData());
             String x = req2.getImageData();
             String y = x.substring(x.indexOf(",") + 1);
             readImage(y);
