@@ -41,7 +41,7 @@ public class PutCategory {
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public void insertPointOfInterest(String req) {
+    public String insertPointOfInterest(String req) {
         // TODO code application logic here
         try {
             System.out.println("Start");
@@ -102,6 +102,7 @@ public class PutCategory {
             InputStream is;
             if (httpCon2.getResponseCode() >= 400) {
                 is = httpCon2.getErrorStream();
+                return "{\"Fail\": error}";
             } else {
                 is = httpCon2.getInputStream();
             }
@@ -110,12 +111,13 @@ public class PutCategory {
             System.out.println(new String(br3));
 
             httpCon2.disconnect();
-
+            return "{\"success\": true}";
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        return "{\"fail\": error}";
     }
 }
 

@@ -159,6 +159,7 @@ public class PutPointOFInterest {
             InputStream is;
             if (httpCon2.getResponseCode() >= 400) {
                 is = httpCon2.getErrorStream();
+                return "{\"Fail\": error}";
             } else {
                 is = httpCon2.getInputStream();
             }
