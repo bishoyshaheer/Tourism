@@ -52,8 +52,8 @@ public class Request {
 	
 		int code = httpUrl.getResponseCode();
 //		Logger logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
-                System.out.println(Url);
-                System.out.println(code);
+              //  System.out.println(Url);
+               // System.out.println(code);
 //		logger.info("Queried " + Url + " with response code " + code);
 		if(code == 200) {
 			BufferedReader in = new BufferedReader(new InputStreamReader(httpUrl.getInputStream()));

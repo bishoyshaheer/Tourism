@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -160,12 +161,12 @@ and open the template in the editor.
 
                                                 <div class="form-group">
                                                     <label>Opening hour</label>
-                                                    <h:inputText id="openHour" styleClass="form-control"  required="true"/>
+                                                 
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>closing hour</label>
-                                                    <h:inputText styleClass="form-control" id="closeHour"/>
+                                                    
                                                 </div>
 
                                                 <div class="form-group">
@@ -223,7 +224,7 @@ and open the template in the editor.
 
 
                                             <br/><br/>
-                                            <div class="gllpMap">Google Maps</div>
+                                            
                                             <br/>
                                             <input type="hidden" id="locX" class="gllpLatitude" value="30.01"/>
                                             <input type="hidden" id="locY" class="gllpLongitude" value="31.14"/>

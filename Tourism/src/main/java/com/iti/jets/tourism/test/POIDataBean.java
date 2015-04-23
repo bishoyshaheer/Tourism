@@ -66,6 +66,9 @@ public class POIDataBean {
 
     static {
         try {
+            Class.forName("citysdk.tourism.client.requests.TourismClient");
+            Class.forName("citysdk.tourism.client.requests.TourismClientFactory");
+            Class.forName("citysdk.tourism.client.requests.ParameterList");
             String url = "http://jes.iti.gov.eg/";
             TourismClient tourismClient = TourismClientFactory.getInstance().getClient(url);
             tourismClient.useVersion("1.0");
@@ -94,6 +97,8 @@ public class POIDataBean {
         } catch (ResourceNotAllowedException ex) {
             Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (VersionNotAvailableException ex) {
+            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
