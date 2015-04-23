@@ -187,9 +187,6 @@ public class PutPointOFInterest {
             imageByte = decoder.decodeBuffer(imageString);
             ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
             BufferedImage image = ImageIO.read(bis);
-//            String realPath =
-//            File file = new FIle(realPath + "/TestFolder", "testFIle.txt");
-//            file.mkdirs();
             ImageIO.write(image, "jpg", new File("D:\\out.jpg"));
             bis.close();
             System.out.println(image);
@@ -200,3 +197,11 @@ public class PutPointOFInterest {
     }
 
 }
+
+//
+// String tomcatDir = System.getProperty("catalina.home");
+//            File f = new File(tomcatDir + "/webapps/PP/Images/");
+//            String strFileName = "img" + i;
+//            File file = new File(tomcatDir + "/webapps/Images/" + strFileName + ".bmp");
+//            vcFileName.add(tomcatDir
+//                    + "/webapps/Images/" + strFileName + ".bmp");

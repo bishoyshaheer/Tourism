@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <!-- MetisMenu CSS -->
+        <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>
+
+        <!-- Custom CSS -->
+        <link href="../dist/css/sb-admin-2.css" rel="stylesheet"/>
+
+        <!-- Custom Fonts -->
+        <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <f:view>
+            <f:loadBundle basename="Test.MyMsg" var="msg"/>
+            <f:loadBundle basename="Test.bundle" var="lang"/>
+            <div id="wrapper">
+
+
+
+                <!-- /.row -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <div class="login-panel panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Please Sign In</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h:form role="form">
+                                        <fieldset>
+
+                                            <div id="success" class="demo-container"></div>
+                                            <div class="form-group">
+                                                <label>Category Term</label>
+                                                <h:inputText styleClass="form-control" id="catName" value="#{data.cat.term}"/>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Category Label</label>
+                                                <h:inputText styleClass="form-control" id="catName" value="#{data.termType.value}"/>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Label Term</label>
+                                                <h:inputText styleClass="form-control" id="catName" value="#{data.termType.term}"/>
+
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Label Lang</label>
+                                                <h:inputText styleClass="form-control" id="catName" value="#{data.termType.lang}"/>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <h:inputText styleClass="form-control" id="catName" value="#{data.baseType.value}"/>
+
+                                            </div>
+
+
+
+                                            <!-- <div class="form-group">
+                                                 <label for="profileImage">Image</label>
+                                                 <input class="form-control" id="POIImage" name="POIImage" type="file" accept=".jpg">
+                                                 <img src="" height="200" alt="preview">
+                                             </div> -->
+
+                                            <div id="success"></div>
+
+                                            <h:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" action="#{data.insertData()}"/>
+
+                                        </fieldset>
+                                    </h:form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- .panel-body -->
+
+            <!-- /.panel -->
+
+            <!-- /.col-lg-6 -->
+
+            <!-- /#wrapper -->
+
+            <!-- jQuery -->
+            <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+            <!-- Custom Theme JavaScript -->
+            <script src="../dist/js/sb-admin-2.js"></script>
+        </f:view>
+    </h:body>
+</html>
+

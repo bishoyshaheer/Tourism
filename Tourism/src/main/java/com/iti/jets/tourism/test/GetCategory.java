@@ -42,31 +42,24 @@ public class GetCategory {
 
         // the parameter list according to the type of categories to be returned
         list.add(new Parameter(ParameterTerms.LIST, ParameterTerms.POIS.getTerm()));
+
         Category cat = tourismClient.getCategories(list);
         List<Category> categories;
-
-        // get the categories 
         categories = cat.getSubCategories();
-
-        //iterate through the list to return IDs
-        for (Category categorie : categories) {
-            List<POITermType> cat2 = categorie.getLabel();
-            System.out.println(categorie.getId());
-
-            // iterate inside one of categories to return its value
-            for (POITermType cat1 : cat2) {
-                catName.add(cat1.getValue());
-
-            }
-        }
-
+        new GetCategory().getCategoryNames(categories);
     }
 
-    public ArrayList<String> getCategoryNames() {
+    public ArrayList<String> getCategoryNames(List<Category> categories) {
         Category c = new Category();
-        List<POITermType> cat = c.getLabel();
-        for (POITermType cat1 : cat) {
-            catName.add(cat1.getValue());
+        //iterate through the list to return IDs
+        for (Category categorie : categories) {
+            List<POITermType> cat = c.getLabel();
+            // iterate inside one of categories to return its value
+            for (POITermType cat1 : cat) {
+                if (cat1.getLang().equals("en-GB")) {
+                    catName.add(cat1.getValue());
+                }
+            }
         }
         return catName;
     }
