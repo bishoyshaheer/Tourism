@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.net.URL;
+import java.util.Date;
 
 /**
  *
@@ -20,46 +21,48 @@ import java.net.URL;
 @ManagedBean(name = "data")
 @SessionScoped
 public class DataBean {
-
+    
     Category cat;
     POIBaseType baseType;
     POITermType termType;
-
+    
     public DataBean() {
         cat = new Category();
         baseType = new POIBaseType();
         termType = new POITermType();
     }
-
+    
     public void setCat(Category cat) {
         this.cat = cat;
     }
-
+    
     public void setBaseType(POIBaseType baseType) {
         this.baseType = baseType;
     }
-
+    
     public void setTermType(POITermType termType) {
         this.termType = termType;
     }
-
+    
     public Category getCat() {
         return cat;
     }
-
+    
     public POIBaseType getBaseType() {
         return baseType;
     }
-
+    
     public POITermType getTermType() {
         return termType;
     }
-
+    
     public void insertData() throws MalformedURLException {
         cat.addLabel(termType);
         cat.addDescription(baseType);
+        cat.setCreated(new Date());
+        cat.setDeleted(null);
         insertData insert = new insertData();
         insert.insertCategoryJson(cat);
     }
-
+    
 }

@@ -51,8 +51,10 @@ public class Request {
 		httpUrl.connect();
 	
 		int code = httpUrl.getResponseCode();
-		Logger logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
-		logger.info("Queried " + Url + " with response code " + code);
+//		Logger logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
+                System.out.println(Url);
+                System.out.println(code);
+//		logger.info("Queried " + Url + " with response code " + code);
 		if(code == 200) {
 			BufferedReader in = new BufferedReader(new InputStreamReader(httpUrl.getInputStream()));
 			String inputLine;
@@ -63,11 +65,11 @@ public class Request {
 	
 			in.close();
 			httpUrl.disconnect();
-			logger.fine("Answer: " + answer);
+//			logger.fine("Answer: " + answer);
 			return answer;
 		} else {
 			String read, message = "";
-			logger.warning("Error code " + code);
+//			logger.warning("Error code " + code);
 			try {
 				BufferedReader inStream = 
 						new BufferedReader(new InputStreamReader(httpUrl.getErrorStream()));
@@ -80,7 +82,7 @@ public class Request {
 				e.printStackTrace();
 			}
 			
-			logger.severe("Error message " + message);
+//			logger.severe("Error message " + message);
 			throw new ServerErrorException(message);
 		}
 	}

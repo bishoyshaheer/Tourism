@@ -83,7 +83,8 @@ public class POIType extends POIBaseType {
 	 * Adds a description to the POIType.
 	 * @param description the description to be added.
 	 */
-	public void addDescription(POIBaseType description) {
+	
+        public void addDescription(POIBaseType description) {
 		this.description.add(description);
 	}
 	
@@ -182,4 +183,25 @@ public class POIType extends POIBaseType {
 	public boolean hasCategories() {
 		return !category.isEmpty();
 	}
+
+    public void setLabel(List<POITermType> label) {
+        this.label = label;
+    }
+
+    public void setDescription(List<POIBaseType> description) {
+        this.description = description;
+    }
+
+    public void setCategory(List<POITermType> category) {
+        this.category = category;
+    }
+
+    public void setTime(List<POITermType> time) {
+        this.time = time;
+    }
+
+    public void setLink(List<POITermType> link) {
+        this.link = link;
+    }
+        
 }

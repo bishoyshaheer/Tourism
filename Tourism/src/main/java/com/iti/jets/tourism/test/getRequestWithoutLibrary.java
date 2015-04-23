@@ -36,16 +36,16 @@ public class getRequestWithoutLibrary {
             while ((output = br.readLine()) != null) {
                 output += output;
                 System.out.println(output);
-//                System.out.println(output);
-//                Gson json = new Gson();
-//                //String y = json.toJson(output);
-//                Category x = json.fromJson(output, Category.class);
-//                System.out.println("x is + " + x.getLabel());
+                System.out.println(output);
+                Gson json = new Gson();
+                //String y = json.toJson(output);
+                //  Category x = json.fromJson(output, Category.class);
+
             }
 
-//            for (int i = 0; i < output.length(); i++) {
-//               
-//            }
+            for (int i = 0; i < output.length(); i++) {
+                //  System.out.println(output.get);
+            }
         } catch (MalformedURLException ex) {
             System.out.println("Error");
         } catch (IOException ex) {
