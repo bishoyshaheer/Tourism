@@ -35,9 +35,15 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 /**
  *
@@ -47,111 +53,48 @@ import javax.faces.bean.SessionScoped;
 @ApplicationScoped
 public class POIDataBean {
 
-    static Map<String, List<POITermType>> categoryValue;
+    static Map<String, List<String>> categoryValue;
     String catSelected;
-    Geometry geo;
-    Location loc;
-    Point point;
+    int lat;
+    int lng;
     POITermType termType;
     POIBaseType baseType;
     PointOfInterest pointofinterest;
     POIType poiType;
+    private List<String> termtypeList;
+    private static final String base = "http://citysdk.url.pt/pois/";
     private List<POITermType> label = new ArrayList<POITermType>();
     private List<POIBaseType> description = new ArrayList<POIBaseType>();
     private List<POITermType> category = new ArrayList<POITermType>();
     private List<POITermType> time = new ArrayList<POITermType>();
     private List<POITermType> link = new ArrayList<POITermType>();
+    private static List<String> labelVal = new ArrayList<>();
 
+    private static List<String> catId;
     Map<String, POITermType> poiData = new HashMap<String, POITermType>();
 
     static {
         try {
-            Class.forName("citysdk.tourism.client.requests.TourismClient");
-            Class.forName("citysdk.tourism.client.requests.TourismClientFactory");
-            Class.forName("citysdk.tourism.client.requests.ParameterList");
-            String url = "http://jes.iti.gov.eg/";
-            TourismClient tourismClient = TourismClientFactory.getInstance().getClient(url);
-            tourismClient.useVersion("1.0");
-            ParameterList list = new ParameterList();
-            // the parameter list according to the type of categories to be returned
-           list.add(new Parameter(ParameterTerms.LIST, ParameterTerms.POIS.getTerm()));
-            Category cat = tourismClient.getCategories(list);
-            List<Category> categories = cat.getSubCategories();
-            categoryValue = new HashMap<>();
-            for (Category categorie : categories) {
-                List<POITermType> categoryLabel = categorie.getLabel();
-                categoryValue.put(categorie.getId(), categoryLabel);
-            }
-        } catch (InvalidParameterException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidValueException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnknownErrorException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ServerErrorException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidParameterTermException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ResourceNotAllowedException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (VersionNotAvailableException ex) {
-            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
+            Class.forName("com.iti.jets.tourism.test.AllCategories");
+            AllCategories cat = new AllCategories();
+            catId = cat.getCategoryID();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-//    @PostConstruct
-//    private void init() {
-//        try {
-//           // Class.forName("citysdk.tourism.client.requests.TourismClient");
-//           // Class.forName("citysdk.tourism.client.requests.TourismClientFactory");
-//            String url = "http://jes.iti.gov.eg/";
-//            TourismClient tourismClient = TourismClientFactory.getInstance().getClient(url);
-//            tourismClient.useVersion("1.0");
-//            ParameterList list = new ParameterList();
-//            //the parameter list according to the type of categories to be returned
-//            list.add(new Parameter(ParameterTerms.LIST, ParameterTerms.POIS.getTerm()));
-//            Category cat = tourismClient.getCategories(list);
-//            List<Category> categories = cat.getSubCategories();
-//            categoryValue = new HashMap<>();
-//            for (Category categorie : categories) {
-//                List<POITermType> categoryLabel = categorie.getLabel();
-//                categoryValue.put(categorie.getId(), categoryLabel);
-//            }
-//          //  System.out.println("Done"+ca);
-//        } catch (InvalidParameterException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (InvalidValueException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (UnknownErrorException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ServerErrorException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (InvalidParameterTermException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ResourceNotAllowedException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (VersionNotAvailableException ex) {
-//            Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
-//        } 
-//    }
     public POIDataBean() {
-        geo = new Geometry();
-        point = new Point();
+        termtypeList = new ArrayList<>();
         pointofinterest = new PointOfInterest();
         poiType = new POIType();
         label.add(new POITermType());
         description.add(new POIBaseType());
         time.add(new POITermType());
-        
+        termtypeList.add("primary");
+        termtypeList.add("secondry");
     }
 
-    public Map<String, List<POITermType>> getCategoryValue() {
+    public Map<String, List<String>> getCategoryValue() {
         return categoryValue;
     }
 
@@ -159,24 +102,20 @@ public class POIDataBean {
         return catSelected;
     }
 
-    public void setCategoryValue(Map<String, List<POITermType>> categoryValue) {
+    public static List<String> getLabelVal() {
+        return labelVal;
+    }
+
+    public static void setLabelVal(List<String> labelVal) {
+        POIDataBean.labelVal = labelVal;
+    }
+
+    public void setCategoryValue(Map<String, List<String>> categoryValue) {
         POIDataBean.categoryValue = categoryValue;
     }
 
     public void setCatSelected(String catSelected) {
         this.catSelected = catSelected;
-    }
-
-    public Geometry getGeo() {
-        return geo;
-    }
-
-    public Location getLoc() {
-        return loc;
-    }
-
-    public Point getPoint() {
-        return point;
     }
 
     public POITermType getTermType() {
@@ -189,18 +128,6 @@ public class POIDataBean {
 
     public PointOfInterest getPointofinterest() {
         return pointofinterest;
-    }
-
-    public void setGeo(Geometry geo) {
-        this.geo = geo;
-    }
-
-    public void setLoc(Location loc) {
-        this.loc = loc;
-    }
-
-    public void setPoint(Point point) {
-        this.point = point;
     }
 
     public void setTermType(POITermType termType) {
@@ -271,13 +198,53 @@ public class POIDataBean {
         this.link = link;
     }
 
+    public List<String> getCatId() {
+        return catId;
+    }
+
+    public void setCatId(List<String> catId) {
+        POIDataBean.catId = catId;
+    }
+
+    public List<String> getTermtypeList() {
+        return termtypeList;
+    }
+
+    public void setTermtypeList(List<String> termtypeList) {
+        this.termtypeList = termtypeList;
+    }
+
+    public int getLat() {
+        return lat;
+    }
+
+    public int getLng() {
+        return lng;
+    }
+
+    public void setLat(int lat) {
+        this.lat = lat;
+    }
+
+    public void setLng(int lng) {
+        this.lng = lng;
+    }
+
     public void insertPoi() {
         POITermType p = new POITermType();
-        p.setId("552f880eb9b3f20e9461720f");
+        System.out.println(label.get(0).term);
+        p.setId(catSelected);
         pointofinterest.addCategory(p);
+        Point point = new Point();
+        Location l = new Location();
+        Geometry g = new Geometry();
+        g.setPosList(lat + " " + lng);
+        point.setPoint(g);
+        l.addPoint(point);
+        pointofinterest.setLocation(l);
         pointofinterest.addLabel(label.get(0));
         pointofinterest.addDescription(description.get(0));
-        pointofinterest.setBase("http://citysdk.url.pt/pois/");
+        pointofinterest.setBase(base);
         pointofinterest.setLang("pt-PT");
         pointofinterest.setCreated(new Date());
         insertData insert = new insertData();

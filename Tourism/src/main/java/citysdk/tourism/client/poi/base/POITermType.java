@@ -39,7 +39,7 @@ package citysdk.tourism.client.poi.base;
  *
  */
 public class POITermType extends POIBaseType {
-	private String term;
+	public String term;
 	private String scheme;
 	
 	public POITermType() {

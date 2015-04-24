@@ -53,12 +53,16 @@ public class GetCategory {
         for (Category categorie : categories) {
             List<POITermType> categoryLabel = categorie.getLabel();
             // iterate inside one of categories to return its value
+           // System.out.println("c"+categorie.getId());
+            catName.clear();
             for (POITermType cat1 : categoryLabel) {
-                if (cat1.getLang().equals("en-GB")) {
-                    // catName.add(cat1.getValue());
-                    categoryValue.put(cat1.getValue(), categorie.getId());
-                }
+               // if (cat1.getLang().equals("en-GB")) {
+                     catName.add(cat1.getValue());
+                     System.out.println(cat1.getValue());
+                   // categoryValue.put(cat1.getValue(), categorie.getId());
+               // }
             }
+            System.out.println(catName.size()+categorie.getId());
         }
 
         for (int i = 0; i < categoryValue.size(); i++) {
