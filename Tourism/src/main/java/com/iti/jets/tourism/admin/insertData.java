@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iti.jets.tourism.test;
+package com.iti.jets.tourism.admin;
 
+import com.iti.jets.tourism.admin.controller.request.*;
 import citysdk.tourism.client.poi.base.POIBaseType;
 import citysdk.tourism.client.poi.single.Category;
 import citysdk.tourism.client.poi.single.PointOfInterest;

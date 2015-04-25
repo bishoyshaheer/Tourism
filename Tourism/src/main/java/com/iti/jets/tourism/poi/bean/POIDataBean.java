@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iti.jets.tourism.test;
+package com.iti.jets.tourism.poi.bean;
 
 import citysdk.tourism.client.exceptions.InvalidParameterException;
 import citysdk.tourism.client.exceptions.InvalidParameterTermException;
@@ -25,6 +25,8 @@ import citysdk.tourism.client.requests.ParameterList;
 import citysdk.tourism.client.requests.TourismClient;
 import citysdk.tourism.client.requests.TourismClientFactory;
 import citysdk.tourism.client.terms.ParameterTerms;
+import com.iti.jets.tourism.admin.controller.category.AllCategories;
+import com.iti.jets.tourism.admin.insertData;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,6 +42,8 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -50,7 +54,7 @@ import org.primefaces.model.map.Marker;
  * @author Marwa
  */
 @ManagedBean(name = "poi")
-@ApplicationScoped
+@SessionScoped
 public class POIDataBean {
 
     static Map<String, List<String>> categoryValue;
@@ -75,7 +79,7 @@ public class POIDataBean {
 
     static {
         try {
-            Class.forName("com.iti.jets.tourism.test.AllCategories");
+            Class.forName("com.iti.jets.tourism.admin.controller.category.AllCategories");
             AllCategories cat = new AllCategories();
             catId = cat.getCategoryID();
         } catch (ClassNotFoundException ex) {
@@ -230,18 +234,25 @@ public class POIDataBean {
         this.lng = lng;
     }
 
+    public void handleFileUpload(FileUploadEvent event) {
+     System.out.println("True");
+     FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+     FacesContext.getCurrentInstance().addMessage(null, message);
+     }
     public void insertPoi() {
         POITermType p = new POITermType();
-        System.out.println(label.get(0).term);
+        // System.out.println(label.get(0).term);
         p.setId(catSelected);
         pointofinterest.addCategory(p);
-        Point point = new Point();
-        Location l = new Location();
-        Geometry g = new Geometry();
-        g.setPosList(lat + " " + lng);
-        point.setPoint(g);
-        l.addPoint(point);
-        pointofinterest.setLocation(l);
+
+        // after adding map
+//        Point point = new Point();
+//        Location l = new Location();
+//        Geometry g = new Geometry();
+//        g.setPosList(lat + " " + lng);
+//        point.setPoint(g);
+//        l.addPoint(point);
+//        pointofinterest.setLocation(l);
         pointofinterest.addLabel(label.get(0));
         pointofinterest.addDescription(description.get(0));
         pointofinterest.setBase(base);

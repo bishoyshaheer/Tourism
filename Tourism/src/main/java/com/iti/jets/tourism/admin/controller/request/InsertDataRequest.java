@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iti.jets.tourism.test;
+package com.iti.jets.tourism.admin.controller.request;
 
+import com.iti.jets.tourism.test.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -21,7 +22,7 @@ public class InsertDataRequest {
 
     private HttpURLConnection httpCon2;
 
-    public void insertIntoServer(String json, URL url) {
+    public boolean insertIntoServer(String json, URL url) {
         try {
             httpCon2 = (HttpURLConnection) url.openConnection();
             httpCon2.setRequestProperty("Content-Type", "text/json");
@@ -32,29 +33,43 @@ public class InsertDataRequest {
             out.write(json);
             out.close();
 
-            getInsertionResponse();
+            boolean response=getInsertionResponse();
+            if(response){
+                return true;
+            }
+            else{
+                return false;
+            }
         } catch (IOException ex) {
             Logger.getLogger(InsertDataRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
-    public void getInsertionResponse() {
+    public boolean getInsertionResponse() {
         try {
             httpCon2.connect();
             InputStream is;
             if (httpCon2.getResponseCode() >= 400) {
                 is = httpCon2.getErrorStream();
+                byte[] br3 = new byte[is.available()];
+                is.read(br3);
+                System.out.println(new String(br3));
+                return false;
 
             } else {
                 is = httpCon2.getInputStream();
+                byte[] br3 = new byte[is.available()];
+                is.read(br3);
+                System.out.println(new String(br3));
+                return true;
             }
-            byte[] br3 = new byte[is.available()];
-            is.read(br3);
-            System.out.println(new String(br3));
 
-            httpCon2.disconnect();
         } catch (IOException ex) {
             Logger.getLogger(InsertDataRequest.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            httpCon2.disconnect();
         }
+        return false;
     }
 }

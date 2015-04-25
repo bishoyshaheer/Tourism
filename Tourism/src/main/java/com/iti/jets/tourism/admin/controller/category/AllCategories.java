@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iti.jets.tourism.test;
+package com.iti.jets.tourism.admin.controller.category;
+
 
 import citysdk.tourism.client.exceptions.InvalidParameterException;
 import citysdk.tourism.client.exceptions.InvalidParameterTermException;
@@ -19,7 +20,7 @@ import citysdk.tourism.client.requests.ParameterList;
 import citysdk.tourism.client.requests.TourismClient;
 import citysdk.tourism.client.requests.TourismClientFactory;
 import citysdk.tourism.client.terms.ParameterTerms;
-import static com.iti.jets.tourism.test.POIDataBean.categoryValue;
+import com.iti.jets.tourism.poi.bean.POIDataBean;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
