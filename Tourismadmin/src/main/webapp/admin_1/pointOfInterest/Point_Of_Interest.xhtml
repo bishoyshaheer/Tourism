@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../common/Template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define  name="formTitle"><h1> POI Data Entry</h1> </ui:define>
+
+    <ui:define name="insideformTitle">  Data Entry </ui:define>
+    <ui:define name="datacontent">
+        <h:form role="form">
+
+            <!--   <div class="form-group">
+                   <label>POI Base</label>
+                   <h:inputText id="POIbase" styleClass="form-control" value="#{poi.pointofinterest.base}" required="true"/>
+               </div> -->
+
+            <div class="form-group">
+                <h:outputText value="#{label['PoiLabel']}" />
+                <h:inputText id="POIName" styleClass="form-control" value="#{poi.label.get(0).value}" required="true"/>
+                <h:message for="POIName" style="color:red" />
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelLang']}" />
+                <h:inputText id="POILang" styleClass="form-control" value="#{poi.label.get(0).lang}" required="true"/>
+                <h:message for="POILang" style="color:red" />
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelTerm']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{poi.label.get(0).term}">
+                    <f:selectItems value="#{poi.termtypeList}" />
+                </h:selectOneMenu>
+            </div>
+
+
+            <div class="form-group">
+                <h:outputText value="#{label['address']}" />
+                <h:inputText styleClass="form-control" id="address"   required="true"/>
+                <h:message for="address" style="color:red" />
+            </div>
+
+
+            <div class="form-group">
+                <h:outputText value="#{label['Description']}" />
+                <h:inputText id="desc"  styleClass="form-control" value="#{poi.description.get(0).value}" required="true"/>
+                <h:message for="desc" style="color:red" />
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['descriptionLang']}" />
+                <h:inputText id="desclang"  styleClass="form-control" value="#{poi.description.get(0).lang}" required="true"/>
+                <h:message for="desclang" style="color:red" />
+            </div>
+            <div class="form-group">
+            <p:fileUpload fileUploadListener="#{poi.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                          multiple="true" update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+            <p:growl id="messages" showDetail="true" />
+        </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['poicat']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{poi.catSelected}">
+                    <f:selectItems value="#{poi.catId}" />
+                </h:selectOneMenu>
+            </div>
+
+
+            <div id="success"></div>
+
+            <h:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" action="#{poi.insertPoi()}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

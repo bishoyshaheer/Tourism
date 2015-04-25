@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <f:view>
+            <ui:composition template="template/common/layoutCommon.xhtml">
+                <!--page body-->
+                <ui:define name="content">
+                    <!-- section works -->
+                    <section id="section-works" class="section appear clearfix">
+                        <div class="container">
+
+                            <!--                <div class="row mar-bot40">
+                                                <div class="col-md-offset-3 col-md-6">
+                                                    <div class="section-header">
+                                                        <h2 class="section-heading animated" data-animation="bounceInUp">Portfolio</h2>
+                                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+
+                            <div class="row">
+                                <div class="span12"> 
+                                    <!--============================== slider =================================-->
+                                    <div class="flexslider" style="background-image: none; background: none">
+                                                                            <ul class="slides" id="slider">
+                                                                                <ui:remove>
+                                                                                    <li> <h:graphicImage name="portfolio/img1.jpg" library="img"/> </li>
+                                                                                    <li> <h:graphicImage name="portfolio/img2.jpg" library="img"/> </li>
+                                                                                    <li> <h:graphicImage name="portfolio/img3.jpg" library="img"/> </li>
+                                                                                    <li> <h:graphicImage name="portfolio/img4.jpg" library="img"/> </li>
+                                                                                    <li> <h:graphicImage name="portfolio/img5.jpg" library="img"/> </li>
+                                                                                </ui:remove>
+                                                                            </ul>
+                                                                        </div>
+
+                                   <!-- <div class="camera_wrap camera_magenta_skin" id="camera_wrap_2">
+                                        <div data-thumb="img/camera/slides/thumbs/bridge.jpg" data-src="img/camera/slides/bridge.jpg">
+                                            <div class="camera_caption fadeFromBottom">
+                                                Camera is a responsive/adaptive slideshow. <em>Try to resize the browser window</em>
+                                            </div>
+                                        </div>
+                                        <div data-thumb="img/camera/slides/thumbs/leaf.jpg" data-src="img/camera/slides/leaf.jpg">
+                                            <div class="camera_caption fadeFromBottom">
+                                                It uses a light version of jQuery mobile, <em>navigate the slides by swiping with your fingers</em>
+                                            </div>
+                                        </div>
+                                        <div data-thumb="img/camera/slides/thumbs/road.jpg" data-src="img/camera/slides/road.jpg">
+                                            <div class="camera_caption fadeFromBottom">
+                                                <em>It's completely free</em> (even if a donation is appreciated)
+                                            </div>
+                                        </div>
+                                        <div data-thumb="img/camera/slides/thumbs/sea.jpg" data-src="img/camera/slides/sea.jpg">
+                                            <div class="camera_caption fadeFromBottom">
+                                                Camera slideshow provides many options <em>to customize your project</em> as more as possible
+                                            </div>
+                                        </div>
+                                        <div data-thumb="img/camera/slides/thumbs/shelter.jpg" data-src="img/camera/slides/shelter.jpg">
+                                            <div class="camera_caption fadeFromBottom">
+                                                It supports captions, HTML elements and videos and <em>it's validated in HTML5</em> (<a href="http://validator.w3.org/check?uri=http%3A%2F%2Fwww.pixedelic.com%2Fplugins%2Fcamera%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0&amp;user-agent=W3C_Validator%2F1.2" target="_blank">have a look</a>)
+                                            </div>
+                                        </div>
+                                        <div data-thumb="img/camera/slides/thumbs/tree.jpg" data-src="img/camera/slides/tree.jpg">
+                                            <div class="camera_caption fadeFromBottom">
+                                                Different color skins and layouts available, <em>fullscreen ready too</em>
+                                            </div>
+                                        </div>
+                                    </div>-->  <!-- #camera_wrap_2 -->
+                                    <span id="responsiveFlag"></span>
+                                    <div class="block-slogan">
+                                        <h2 id="label">Welcome!</h2>
+                                        <div>
+                                            <p id="discription"><a href="http://blog.templatemonster.com/free-website-templates/ " target="_blank" class="link-1">Click here</a> for more info about this free website template created by TemplateMonster.com. This is a Bootstrap template that goes with several layout options (for desktop, tablet, smartphone landscape and portrait) to fit all popular screen resolutions. The PSD source files of this template are available for free for the registered members of TemplateMonster.com. Feel free to get them!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <h:form id="poi-form" class="form-group-lg">
+                        <h:inputText id="poi-id" value="${poiSingle.poiId}"/>
+                    </h:form>
+                </ui:define>
+                <ui:define name="footerSpecific">
+
+                    <!--<script type="text/javascript" src="js/jquery.kwicks-1.5.1.js"></script>-->
+
+                    <h:outputScript name="camera.min.js" library="js" target="head"/>
+                    <script>
+
+                        $.when(resolverClient).done(function (resolverClient) {
+                            gClient = resolverClient;
+                            $id = document.getElementById("poi-form:poi-id").value;
+                            console.log($id);
+                            getPoiById($id);
+                        });
+                    </script>
+
+                </ui:define>
+            </ui:composition>
+        </f:view>
+    </h:body>
+</html>
+

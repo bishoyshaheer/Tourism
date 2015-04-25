@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition>
+            
+        <section id="header" class="appear"></section>
+        <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="fa fa-bars color-white"></span>
+                    </button>
+
+                    <h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">			Tourism
+                        </a></h1> 
+
+                </div>
+                <div class="navbar-collapse collapse pull-left">
+
+
+
+
+                    <ul class="nav navbar-nav" data-0="margin-top:45px;" data-300="margin-top:20px;">
+                        <li class="active"><a href="index.xhtml">Home</a></li>
+                        <li><a href="#{request.contextPath}/faces/index.xhtml#section-works">Portfolio</a></li>
+                        <li><a href="#{request.contextPath}/faces/index.xhtml#section-contact">Contact</a></li>
+                        <li><a href="#{request.contextPath}/faces/index.xhtml#section-about">About</a></li>
+                    </ul>
+
+                </div><!--/.navbar-collapse -->
+
+                <form class="navbar-form" data-0="margin-top:10px;" data-300="margin-top:5px;" id="search">
+                    <div class="form-group" style="display:inline;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchData"/>
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        get the contextPath in a hidden field
+        <h:inputHidden id="context-path" value="#{request.contextPath}"/>
+        </ui:composition>
+    </body>
+</html>
