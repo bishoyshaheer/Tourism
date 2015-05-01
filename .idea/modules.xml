@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Tourismadmin/Tourismadmin.iml" filepath="$PROJECT_DIR$/Tourismadmin/Tourismadmin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tourismtourist/Tourismtourist.iml" filepath="$PROJECT_DIR$/Tourismtourist/Tourismtourist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tourismparent.iml" filepath="$PROJECT_DIR$/tourismparent.iml" />
+    </modules>
+  </component>
+</project>

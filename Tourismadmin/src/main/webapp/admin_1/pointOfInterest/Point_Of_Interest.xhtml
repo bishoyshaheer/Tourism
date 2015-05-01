@@ -30,11 +30,13 @@
 
             <div class="form-group">
                 <h:outputText value="#{label['PoiLabel']}" />
-                <h:inputText id="POIName" styleClass="form-control" value="#{poi.label.get(0).value}" required="true">
-                    <f:validator validatorId="str" />
-                        </h:inputText>
-                <h:message for="POIName" style="color:red" />
-            </div>
+
+                    <h:inputText id="POIName" styleClass="form-control input-number" value="#{poi.labelVal}" required="true">
+                        <f:validator validatorId="str" />
+                    </h:inputText>
+                    <h:message for="POIName" style="color:red" />
+                     </div>
+
 
             <div class="form-group">
                 <h:outputText value="#{label['LabelLang']}" />

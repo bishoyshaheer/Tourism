@@ -96,7 +96,6 @@ public class POIDataBean {
     private List<POITermType> time = new ArrayList<POITermType>();
     private List<POITermType> link = new ArrayList<>();
     private List<Relationship> relationship=new ArrayList<>();
-    private static List<String> labelVal = new ArrayList<>();
     private List<String> termcatList=new ArrayList<>();
     private List<String> mapList=new ArrayList<>();
     private static List<String> catId;
@@ -112,6 +111,8 @@ public class POIDataBean {
     private List<String> lineValuesPosList=new ArrayList<>();
     private String lineTitle;
     private String polyTitle;
+    List<String> labelArr=new ArrayList<>();
+    private String labelVal;
     static {
         try {
             Class.forName("com.iti.jets.tourism.admin.controller.category.AllCategories");
@@ -128,6 +129,7 @@ public class POIDataBean {
         emptyModel = new DefaultMapModel();
         values = new ArrayList();
         values.add("");
+        labelArr.add("");
     }
 
     public POIDataBean() {
@@ -188,12 +190,16 @@ public class POIDataBean {
         return catSelected;
     }
 
-    public static List<String> getLabelVal() {
+    public String getLabelVal() {
         return labelVal;
     }
 
-    public static void setLabelVal(List<String> labelVal) {
-        POIDataBean.labelVal = labelVal;
+    public void setLabelVal(String labelVal) {
+        this.labelVal = labelVal;
+    }
+
+    public void addLabelValue(){
+        labelArr.add(this.labelVal);
     }
 
     public void setCategoryValue(Map<String, List<String>> categoryValue) {
@@ -274,6 +280,18 @@ public class POIDataBean {
 
     public void setLabel(List<POITermType> label) {
         this.label = label;
+    }
+
+    public static String getBase() {
+        return base;
+    }
+
+    public List<String> getLabelArr() {
+        return labelArr;
+    }
+
+    public void setLabelArr(List<String> labelArr) {
+        this.labelArr = labelArr;
     }
 
     public void setDescription(List<POIBaseType> description) {
