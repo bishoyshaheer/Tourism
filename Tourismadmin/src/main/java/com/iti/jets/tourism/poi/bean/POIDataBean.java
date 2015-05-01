@@ -108,8 +108,10 @@ public class POIDataBean {
     private List<Point> pointArr=new ArrayList<>();
     private List<citysdk.tourism.client.poi.base.Polygon> polygonArr = new ArrayList<citysdk.tourism.client.poi.base.Polygon>();
     private List<String> values;
-
-
+    private List<String> polyValuesPosList=new ArrayList<>();
+    private List<String> lineValuesPosList=new ArrayList<>();
+    private String lineTitle;
+    private String polyTitle;
     static {
         try {
             Class.forName("com.iti.jets.tourism.admin.controller.category.AllCategories");
@@ -139,9 +141,9 @@ public class POIDataBean {
         termtypeList.add("secondry");
         termcatList.add("category");
         termcatList.add("tag");
-        mapList.add("point");
-        mapList.add("line");
-        mapList.add("polyLine");
+        mapList.add("entrance");
+        mapList.add("center");
+        mapList.add("navigation");
         langList.add("Ar_ar");
         langList.add("En-en");
         linkURL.add(new POITermType());
@@ -322,6 +324,25 @@ public class POIDataBean {
         this.lng = lng;
     }
 
+    public String getLineTitle() {
+        return lineTitle;
+    }
+
+    public void setLineTitle(String lineTitle) {
+        this.lineTitle = lineTitle;
+    }
+
+    public void setPolyTitle(String polyTitle) {
+        this.polyTitle = polyTitle;
+    }
+
+    public String getPolyTitle() {
+        return polyTitle;
+
+    }
+
+
+
     public List<Double> getLatArr() {
         return latArr;
     }
@@ -447,11 +468,36 @@ public class POIDataBean {
         return langList;
     }
 
+    boolean poly=true;
+    boolean line=true;
+    boolean point=true;
 
+    public void addPolygon() {
+        PolygonSplitter ps = new PolygonSplitter();
+            String pos = ps.setPolgon(latlngArr);
+            if (!pos.isEmpty() && !pos.equals("")) {
+                poly = false;
+                addPolyPosList(pos);
+                pos = "";
+                System.out.println("Hello " + latlngArr);
+            }
+    }
+
+    public void addLine(){
+
+        PolygonSplitter ps = new PolygonSplitter();
+
+            List<String> lines= ps.setPolyLine(latlngLine);
+            if(lines.size() >0){
+                line=false;
+                addLinePosList(lines);
+            }
+
+    }
     public void addMarker() {
-        System.out.println("hello "+lat+"  "+lng);
-       // System.out.println(latlngArr);
-       addAction();
+
+            addAction();
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Lat:" + lat + ", Lng:" + lng));
     }
     public void onMarkerDrag(MarkerDragEvent event) {
@@ -459,12 +505,29 @@ public class POIDataBean {
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Dragged", "Lat:" + marker2.getLatlng().getLat() + ", Lng:" + marker2.getLatlng().getLng()));
     }
-
+    // to prepare point list
     public String addAction() {
 
         latArr.add(this.lat);
         lngArr.add(this.lng);
+
         return null;
+    }
+
+    // to prepare polygon list
+    public void addPolyPosList(String pos){
+        polyValuesPosList.add(pos);
+     //   System.out.println("polygon is " + polyValuesPosList.size());
+
+    }
+
+
+    // to prepare line list
+    public void addLinePosList(List <String> line){
+        for (int i = 0; i <line.size() ; i++) {
+            lineValuesPosList.add(line.get(i));
+          //  System.out.println("polyline : "+lineValuesPosList.size());
+        }
     }
 
     public void handleFileUpload(FileUploadEvent event) {
@@ -520,31 +583,46 @@ public class POIDataBean {
         FacesContext context = FacesContext.getCurrentInstance();
         POITermType p = new POITermType();
 
-//call the splitter class to parse the input of markers and polygon
-        PolygonSplitter ps=new PolygonSplitter();
-        String pos=ps.setPolgon(latlngArr);
-       List<String> lines= ps.setPolyLine(latlngLine);
 
-
+        // set the location
+        Location lo=new Location();
         // for test setting the polygon
         citysdk.tourism.client.poi.base.Polygon pol=new citysdk.tourism.client.poi.base.Polygon();
-        Geometry gem=new Geometry();
-       gem.setPosList(pos);
-        pol.setSimplePolygon(gem);
-        Location lo=new Location();
-        lo.addPolygon(pol);
+       List <citysdk.tourism.client.poi.base.Polygon> polyCity=new ArrayList<>();
+        Geometry gpoly=new Geometry();
+        for (int i = 0; i < polyValuesPosList.size() ; i++) {
+            gpoly.setPosList(polyValuesPosList.get(i));
+            pol.setSimplePolygon(gpoly);
+            polyCity.add(pol);
+        }
+        polyValuesPosList=new ArrayList<>();
+        lo.setPolygon(polyCity);
 
         // for test seeting the poly line and add it to an array
         List<Line> lineCity=new ArrayList<>();
         Line line=new Line();
         Geometry gline=new Geometry();
-        for (int i = 0; i < lines.size(); i++) {
-            gline.setPosList(lines.get(i));
+        for (int i = 0; i < lineValuesPosList.size(); i++) {
+            gline.setPosList(lineValuesPosList.get(i));
             line.setLineString(gline);
             lineCity.add(line);
         }
+        lineValuesPosList=new ArrayList<>();
         lo.setLine(lineCity);
 
+        // for the point
+        Point point = new Point();
+        Geometry g = new Geometry();
+        for (int i = 0; i <latArr.size() ; i++) {
+            g.setPosList(lngArr.get(i) + " " + latArr.get(i));
+            point.setPoint(g);
+            pointArr.add(point);
+        }
+        lngArr=new ArrayList<>();
+        latArr=new ArrayList<>();
+        lo.setPoint(pointArr);
+        lo.setAddress(baseTypeAdd);
+        pointofinterest.setLocation(lo);
 
         AllCategories cat=new AllCategories();
         Map <String,String> val=cat.getCategoryValueID();
@@ -555,21 +633,7 @@ public class POIDataBean {
         pointofinterest.addCategory(p);
 
         // after adding map
-        Point point = new Point();
-        Location l = new Location();
-        Geometry g = new Geometry();
-        for (int i = 0; i <latArr.size() ; i++) {
-            g.setPosList(lngArr.get(i) + " " + latArr.get(i));
-            point.setPoint(g);
-            pointArr.add(point);
-        }
-//        g.setPosList(lng + " " + lat);
-//        point.setPoint(g);
-        lo.setPoint(pointArr);
         System.out.println(baseTypeAdd.getValue());
-        lo.setAddress(baseTypeAdd);
-
-        pointofinterest.setLocation(lo);
         encodeString e=new encodeString();
         String y= e.getStringEncoded(label.get(0).getValue());
        label.get(0).setValue(y);

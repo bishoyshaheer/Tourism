@@ -101,7 +101,7 @@ function initialize() {
          });
             PF('map').addOverlay(currentMarker);
 
-            PF('dlg').show();
+            PF('dlgpoly').show();
         }
 
         // action of drawing polyline
@@ -129,7 +129,7 @@ function initialize() {
             });
             PF('map').addOverlay(currentMarker);
 
-            PF('dlg').show();
+            PF('dlgline').show();
 
         }
 
@@ -172,10 +172,14 @@ function markerAddComplete() {
     //
     //currentMarker = null;
     PF('dlg').hide();
+    PF('dlgpoly').hide();
+    PF('dlgline').hide();
 }
 
 function cancel() {
     PF('dlg').hide();
+    PF('dlgpoly').hide();
+    PF('dlgline').hide();
     currentMarker.setMap(null);
     currentMarker = null;
 

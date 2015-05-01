@@ -29,9 +29,10 @@ public class PolygonSplitter {
                     b=false;
                 }
             }
-          //  System.out.println(polyPosList);
+            if (polyPosList.length() > 0 && polyPosList.charAt(polyPosList.length() - 1)==',') {
+                polyPosList = polyPosList.substring(0, polyPosList.length() - 1);
+            }
         }
-
         return  polyPosList;
 
     }

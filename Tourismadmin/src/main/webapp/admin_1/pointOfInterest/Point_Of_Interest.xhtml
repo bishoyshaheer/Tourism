@@ -18,13 +18,7 @@
                 <h:message for="acForce" style="color:red" />
                 </div>
 
-            <div class="form-group">
-                <h:outputText value="#{label['mapType']}" />
-                <h:selectOneMenu styleClass="form-control" value="#{poi.selectedMapType}">
-                    <f:selectItems value="#{poi.mapList}" />
-                </h:selectOneMenu>
 
-            </div>
 
             <div class="form-group">
                 <h:outputText value="#{label['poiLang']}" />
@@ -145,8 +139,9 @@
                 <h:form prependId="false">
                     <h:panelGrid columns="2">
                         <h:outputLabel for="title" value="Title:" />
-                        <p:inputText id="title" value="#{poi.title}" />
-
+                        <h:selectOneMenu id="title" styleClass="form-control" value="#{poi.selectedMapType}">
+                            <f:selectItems value="#{poi.mapList}" />
+                        </h:selectOneMenu>
                         <f:facet name="footer">
                             <p:commandButton value="Add" actionListener="#{poi.addMarker}"  oncomplete="markerAddComplete()" />
                             <p:commandButton value="Cancel" onclick="return cancel()" />
@@ -155,7 +150,39 @@
 
                     <h:inputHidden id="lat" value="#{poi.lat}" />
                     <h:inputHidden id="lng" value="#{poi.lng}" />
+
+
+                </h:form>
+            </p:dialog>
+
+            <p:dialog widgetVar="dlgpoly" showEffect="fade">
+                <h:form prependId="false">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="titlepoly" value="Title:" />
+                        <p:inputText id="titlepoly" value="#{poi.polyTitle}" />
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Add" actionListener="#{poi.addPolygon}"  oncomplete="markerAddComplete()" />
+                            <p:commandButton value="Cancel" onclick="return cancel()" />
+                        </f:facet>
+                    </h:panelGrid>
+
                     <h:inputHidden id="lngPol" value="#{poi.latlngArr}" />
+
+                </h:form>
+            </p:dialog>
+
+            <p:dialog widgetVar="dlgline" showEffect="fade">
+                <h:form prependId="false">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="titleline" value="Title:" />
+                        <p:inputText id="titleline" value="#{poi.lineTitle}" />
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Add" actionListener="#{poi.addLine}"  oncomplete="markerAddComplete()" />
+                            <p:commandButton value="Cancel" onclick="return cancel()" />
+                        </f:facet>
+                    </h:panelGrid>
                     <h:inputHidden id="cooLine" value="#{poi.latlngLine}" />
 
                 </h:form>
