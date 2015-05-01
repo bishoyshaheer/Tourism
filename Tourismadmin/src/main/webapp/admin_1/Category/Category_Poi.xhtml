@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="../common/Template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define  name="formTitle"><h2>Category Data Entry</h2> </ui:define>
+
+    <ui:define name="insideformTitle">  </ui:define>
+
+    <ui:define name="datacontent">
+        <h:form role="form">
+            <p:growl id="growlEnd" showDetail="true" sticky="true" />
+            <div class="form-group">
+                <h:outputText value="#{label['CategoryTerm']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{data.termType.term}">
+                    <f:selectItems value="#{data.termtypeList}" />
+                </h:selectOneMenu>
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['CategoryLabel']}" />
+                <h:inputText styleClass="form-control" id="catLabel" value="#{data.termType.value}" required="true">
+                    <f:validator validatorId="str" />
+                        </h:inputText>
+                <h:message for="catLabel" style="color:red" />
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['CategoryLang']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{data.termType.lang}">
+                    <f:selectItems value="#{data.langList}" />
+                </h:selectOneMenu>
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelValue']}" />
+                <h:inputText styleClass="form-control" id="labelVal" value="#{data.label.get(0).value}" required="true">
+                    <f:validator validatorId="str" />
+                        </h:inputText>
+                <h:message for="labelVal" style="color:red" />
+            </div>
+
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelTerm']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{data.label.get(0).term}">
+                    <f:selectItems value="#{data.termtypeList}" />
+                </h:selectOneMenu>
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelLang']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{data.label.get(0).lang}">
+                    <f:selectItems value="#{data.langList}" />
+                </h:selectOneMenu>
+
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['subCatTerm']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{data.subCategories.get(0).term}">
+                    <f:selectItems value="#{data.termtypeList}" />
+                </h:selectOneMenu>
+
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['subCatValue']}" />
+                <h:inputText styleClass="form-control" id="catSubValue" value="#{data.subCategories.get(0).value}" >
+                    <f:validator validatorId="str" />
+                        </h:inputText>
+                <h:message for="catSubValue" style="color:red" />
+
+            </div>
+
+            <div id="success"></div>
+
+            <p:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" update="growlEnd" action="#{data.insertData()}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

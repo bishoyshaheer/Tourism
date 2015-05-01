@@ -1,0 +1,383 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--&lt;!&ndash;-->
+<!--To change this license header, choose License Headers in Project Properties.-->
+<!--To change this template file, choose Tools | Templates-->
+<!--and open the template in the editor.-->
+<!--&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+      <!--xmlns:h="http://java.sun.com/jsf/html"-->
+      <!--xmlns:f="http://java.sun.com/jsf/core"-->
+      <!--xmlns:ui="http://java.sun.com/jsf/facelets">-->
+    <!--<h:head>-->
+        <!--<meta charset="utf-8"/>-->
+        <!--&lt;!&ndash;<meta http-equiv="" content="IE=edge"/>&ndash;&gt;-->
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+        <!--<meta name="description" content=""/>-->
+        <!--<meta name="author" content=""/>-->
+
+        <!--<title>-->
+            <!--<ui:insert name="title"/>-->
+        <!--</title>-->
+        <!--<style>-->
+            <!--html, body, #map-canvas {-->
+                <!--height: 100%;-->
+                <!--margin: 0px;-->
+                <!--padding: 0px-->
+            <!--}-->
+        <!--</style>-->
+        <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp;signed_in=true;libraries=drawing"></script>-->
+        <!--<script src="js/ContextMenu.js"></script>-->
+        <!--&lt;!&ndash;        <script type="text/javascript"-->
+                        <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDpKd7H_a_WKWCWR0TmEkVzmOQHUHy-oE">-->
+                <!--</script>&ndash;&gt;-->
+        <!--<script>-->
+            <!--var markers = [];-->
+            <!--var circles = [];-->
+            <!--var polygons = [];-->
+            <!--var polylines = [];-->
+            <!--var rectangles = [];-->
+
+            <!--function initialize() {-->
+                <!--var mapOptions = {-->
+                    <!--center: new google.maps.LatLng(-34.397, 150.644),-->
+                    <!--zoom: 8-->
+                <!--};-->
+
+                <!--var map = new google.maps.Map(document.getElementById('map-canvas'),-->
+                        <!--mapOptions);-->
+
+                <!--var drawingManager = new google.maps.drawing.DrawingManager({-->
+                    <!--drawingMode: google.maps.drawing.OverlayType.MARKER,-->
+                    <!--drawingControl: true,-->
+                    <!--drawingControlOptions: {-->
+                        <!--position: google.maps.ControlPosition.TOP_CENTER,-->
+                        <!--drawingModes: [-->
+                            <!--google.maps.drawing.OverlayType.MARKER,-->
+                            <!--google.maps.drawing.OverlayType.CIRCLE,-->
+                            <!--google.maps.drawing.OverlayType.POLYGON,-->
+                            <!--google.maps.drawing.OverlayType.POLYLINE,-->
+                            <!--google.maps.drawing.OverlayType.RECTANGLE-->
+                        <!--]-->
+                    <!--},-->
+                    <!--markerOptions: {-->
+                        <!--draggable: true-->
+<!--//                     icon: 'images/beachflag.png',-->
+                    <!--},-->
+                    <!--polylineOptions: {-->
+                        <!--draggable: true-->
+                    <!--},-->
+                    <!--polygonOptions: {-->
+                        <!--draggable: true-->
+                    <!--},-->
+                    <!--rectangleOptions: {-->
+                        <!--draggable: true-->
+                    <!--},-->
+                    <!--circleOptions: {-->
+                        <!--fillColor: '#ffff00',-->
+                        <!--fillOpacity: 0.3,-->
+                        <!--strokeWeight: 5,-->
+                        <!--clickable: true,-->
+                        <!--editable: true,-->
+                        <!--zIndex: 1-->
+                    <!--}-->
+
+                <!--});-->
+                <!--drawingManager.setMap(map);-->
+
+                <!--google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {-->
+                    <!--// action of drawing marker-->
+                    <!--if (event.type == google.maps.drawing.OverlayType.MARKER) {-->
+                        <!--var newMarker = event.overlay;-->
+                        <!--newMarker.content = "marker #" + markers.length;-->
+
+                        <!--google.maps.event.addListener(newMarker, 'click', function(event) {-->
+                            <!--for (var i = 0; &lsaquo;  markers.length ; i++) {-->
+                                <!--if (markers[i] == newMarker) {-->
+                                    <!--alert("jijj");-->
+                                <!--}-->
+                            <!--}-->
+                        <!--});-->
+                        <!--// add marker in array-->
+                        <!--markers.push(newMarker);-->
+                    <!--}-->
+                    <!--// action of drawing circle-->
+                    <!--else if (event.type == google.maps.drawing.OverlayType.CIRCLE) {-->
+                        <!--var newCircle = event.overlay;-->
+                        <!--newCircle.content = "circle #" + circles.length;-->
+                        <!--google.maps.event.addListener(newCircle, 'click', function(event) {-->
+                            <!--alert(newCircle.content)-->
+                        <!--});-->
+                        <!--// add marker in array-->
+                        <!--circles.push(newCircle);-->
+                    <!--}-->
+
+                    <!--// action of drawing polygon-->
+                    <!--else if (event.type == google.maps.drawing.OverlayType.POLYGON) {-->
+                        <!--var newPolygon = event.overlay;-->
+                        <!--newPolygon.content = "polygon #" + polygons.length;-->
+                        <!--google.maps.event.addListener(newPolygon, 'click', function(event) {-->
+                            <!--alert(event.latLng)-->
+                        <!--});-->
+                        <!--// add marker in array-->
+                        <!--polygons.push(newPolygon);-->
+                    <!--}-->
+
+                    <!--// action of drawing polyline-->
+                    <!--else if (event.type == google.maps.drawing.OverlayType.POLYLINE) {-->
+                        <!--var newPolyline = event.overlay;-->
+                        <!--newPolyline.content = "polyline #" + polylines.length;-->
+                        <!--alert(polylines.length);-->
+                        <!--google.maps.event.addListener(newPolyline, 'click', function(event) {-->
+                            <!--alert(event.latLng)-->
+                        <!--});-->
+                        <!--// add marker in array-->
+                        <!--polylines.push(newPolyline);-->
+                    <!--}-->
+
+                    <!--// action of drawing rectangle-->
+                    <!--else if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {-->
+                        <!--var newRect = event.overlay;-->
+                        <!--newRect.content = "rect #" + rectangles.length;-->
+                        <!--google.maps.event.addListener(newRect, 'click', function(event) {-->
+                            <!--alert(event.latLng)-->
+                        <!--});-->
+                        <!--// add marker in array-->
+                        <!--rectangles.push(newRect);-->
+                    <!--}-->
+                <!--});-->
+
+                <!--//~~~~~~~~~~~~~~~~~~~~~~~~right click menu*********************//-->
+                <!--//	create the ContextMenuOptions object-->
+                <!--var contextMenuOptions = {};-->
+                <!--contextMenuOptions.classNames = {menu: 'context_menu', menuSeparator: 'context_menu_separator'};-->
+
+                <!--//	create an array of ContextMenuItem objects-->
+                <!--var menuItems = [];-->
+                <!--menuItems.push({className: 'context_menu_item', eventName: 'zoom_in_click', label: 'Zoom in'});-->
+                <!--menuItems.push({className: 'context_menu_item', eventName: 'zoom_out_click', label: 'Zoom out'});-->
+                <!--//	a menuItem with no properties will be rendered as a separator-->
+                <!--menuItems.push({});-->
+                <!--menuItems.push({className: 'context_menu_item', eventName: 'center_map_click', label: 'Center map here'});-->
+                <!--contextMenuOptions.menuItems = menuItems;-->
+
+                <!--//	create the ContextMenu object-->
+                <!--var contextMenu = new ContextMenu(map, contextMenuOptions);-->
+
+                <!--//	display the ContextMenu on a Map right click-->
+                <!--google.maps.event.addListener(map, 'rightclick', function(mouseEvent) {-->
+                    <!--contextMenu.show(mouseEvent.latLng);-->
+                <!--});-->
+
+                <!--//	listen for the ContextMenu 'menu_item_selected' event-->
+                <!--google.maps.event.addListener(contextMenu, 'menu_item_selected', function(latLng, eventName) {-->
+                    <!--//	latLng is the position of the ContextMenu-->
+                    <!--//	eventName is the eventName defined for the clicked ContextMenuItem in the ContextMenuOptions-->
+                    <!--switch (eventName) {-->
+                        <!--case 'zoom_in_click':-->
+                            <!--map.setZoom(map.getZoom() + 1);-->
+                            <!--break;-->
+                        <!--case 'zoom_out_click':-->
+                            <!--map.setZoom(map.getZoom() - 1);-->
+                            <!--break;-->
+                        <!--case 'center_map_click':-->
+                            <!--map.panTo(latLng);-->
+                            <!--break;-->
+                    <!--}-->
+                <!--});-->
+            <!--}-->
+            <!--google.maps.event.addDomListener(window, 'load', initialize);-->
+        <!--</script>-->
+
+        <!--&lt;!&ndash; Bootstrap Core CSS &ndash;&gt;-->
+        <!--<link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>-->
+
+        <!--&lt;!&ndash; MetisMenu CSS &ndash;&gt;-->
+        <!--<link href="../../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>-->
+
+        <!--&lt;!&ndash; Custom CSS &ndash;&gt;-->
+        <!--<link href="../../dist/css/sb-admin-2.css" rel="stylesheet"/>-->
+
+        <!--&lt;!&ndash; Custom Fonts &ndash;&gt;-->
+        <!--<link href="../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
+
+    <!--</h:head>-->
+    <!--<h:body>-->
+        <!--<f:view>-->
+            <!--<f:loadBundle basename="com.iti.jets.tourism.jsfLabels.bundle" var="label"/>-->
+            <!--<div id="wrapper">-->
+
+                <!--&lt;!&ndash; Navigation &ndash;&gt;-->
+                <!--<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">-->
+                    <!--<div class="navbar-header">-->
+                        <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
+                            <!--<span class="sr-only">Toggle navigation</span>-->
+                            <!--<span class="icon-bar"></span>-->
+                            <!--<span class="icon-bar"></span>-->
+                            <!--<span class="icon-bar"></span>-->
+                        <!--</button>-->
+                        <!--<a class="navbar-brand" href="index.html">Tourism</a>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; /.navbar-header &ndash;&gt;-->
+
+                    <!--<ul class="nav navbar-top-links navbar-right">-->
+                        <!--<li class="dropdown">-->
+                            <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
+                                <!--<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>-->
+                            <!--</a>-->
+                            <!--<ul class="dropdown-menu dropdown-user">-->
+                                <!--<li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                            <!--&lt;!&ndash; /.dropdown-user &ndash;&gt;-->
+                        <!--</li>-->
+                        <!--&lt;!&ndash; /.dropdown &ndash;&gt;-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash; /.navbar-top-links &ndash;&gt;-->
+
+                    <!--<div class="navbar-default sidebar" role="navigation">-->
+                        <!--<div class="sidebar-nav navbar-collapse">-->
+                            <!--<ul class="nav" id="side-menu">-->
+                                <!--<li>-->
+                                    <!--<a href="#"><i class="fa fa-files-o fa-fw"></i> Category List<span class="fa arrow"></span></a>-->
+                                    <!--<ul class="nav nav-second-level">-->
+                                        <!--<li>-->
+                                            <!--<h:link outcome="/admin_1/Category/Category_Poi.xhtml">Create Category for a place</h:link>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+
+                                        <!--</li>-->
+
+                                    <!--</ul>-->
+                                    <!--&lt;!&ndash; /.nav-second-level &ndash;&gt;-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#"><i class="fa fa-edit fa-fw"></i> Create<span class="fa arrow"></span></a>-->
+                                    <!--<ul class="nav nav-second-level">-->
+                                        <!--<li>-->
+                                            <!--<h:link outcome="/admin_1/pointOfInterest/Point_Of_Interest.xhtml">Create place</h:link>-->
+                                        <!--</li>-->
+
+                                    <!--</ul>-->
+                                    <!--&lt;!&ndash; /.nav-second-level &ndash;&gt;-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /.sidebar-collapse &ndash;&gt;-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; /.navbar-static-side &ndash;&gt;-->
+                <!--</nav>-->
+
+
+
+
+                <!--<div id="page-wrapper">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-12">-->
+                            <!--<ui:insert name="formTitle"/>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /.col-lg-12 &ndash;&gt;-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; /.row &ndash;&gt;-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-6">-->
+                            <!--<div class="panel panel-default">-->
+                                <!--<div class="panel-heading">-->
+                                    <!--<ui:insert name="insideformTitle"/>-->
+                                <!--</div>-->
+
+
+                                <!--&lt;!&ndash; /.navbar-header &ndash;&gt;-->
+
+                                <!--<div class="panel-body">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-lg-9">-->
+                                            <!--<ui:insert name="datacontent" />-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash; /.col-lg-6 (nested) &ndash;&gt;-->
+
+                                        <!--&lt;!&ndash; /.col-lg-6 (nested) &ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; /.row (nested) &ndash;&gt;-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; /.panel &ndash;&gt;-->
+                        <!--</div>-->
+
+                            <!--<ui:insert name="anotheSide"/>-->
+                            <!--&lt;!&ndash;<div class="col-lg-6">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;Map To Detect POI&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash; /.panel-heading &ndash;&gt;&ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;&lt;!&ndash; /.panel-body &ndash;&gt;&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--<div id="map-canvas"></div>-->
+
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+
+            <!--&lt;!&ndash; /.col-lg-12 &ndash;&gt;-->
+
+
+            <!--&lt;!&ndash; jQuery &ndash;&gt;-->
+            <!--&lt;!&ndash;<script src="../../bower_components/jquery/dist/jquery.min.js"></script>&ndash;&gt;-->
+
+            <!--&lt;!&ndash; Bootstrap Core JavaScript &ndash;&gt;-->
+            <!--&lt;!&ndash;<script type="text/javascript">&ndash;&gt;-->
+                <!--&lt;!&ndash;var currentMarker = null;&ndash;&gt;-->
+
+                <!--&lt;!&ndash;function handlePointClick(event) {&ndash;&gt;-->
+                    <!--&lt;!&ndash;if(currentMarker === null) {&ndash;&gt;-->
+                        <!--&lt;!&ndash;document.getElementById('lat').value = event.latLng.lat();&ndash;&gt;-->
+                        <!--document.getElementById('lng').value = event.latLng.lng();-->
+
+                        <!--currentMarker = new google.maps.Marker({-->
+                            <!--position:new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())-->
+                        <!--});-->
+
+                        <!--PF('map').addOverlay(currentMarker);-->
+
+                        <!--PF('dlg').show();-->
+                    <!--}-->
+                <!--}-->
+
+                <!--function markerAddComplete() {-->
+                    <!--var title = document.getElementById('title');-->
+                    <!--currentMarker.setTitle(title.value);-->
+                    <!--title.value = "";-->
+
+                    <!--currentMarker = null;-->
+                    <!--PF('dlg').hide();-->
+                <!--}-->
+
+                <!--function cancel() {-->
+                    <!--PF('dlg').hide();-->
+                    <!--currentMarker.setMap(null);-->
+                    <!--currentMarker = null;-->
+
+                    <!--&lt;!&ndash;return false;&ndash;&gt;-->
+                <!--&lt;!&ndash;}&ndash;&gt;-->
+            <!--&lt;!&ndash;</script>&ndash;&gt;-->
+            <!--<ui:insert name="scriptFooter"/>-->
+            <!--<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+
+            <!--&lt;!&ndash; Metis Menu Plugin JavaScript &ndash;&gt;-->
+            <!--<script src="../../bower_components/metisMenu/dist/metisMenu.min.js"></script>-->
+
+            <!--&lt;!&ndash; Custom Theme JavaScript &ndash;&gt;-->
+            <!--<script src="../../dist/js/sb-admin-2.js"></script>-->
+
+            <!--&lt;!&ndash;<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<script type="text/javascript" src="../Category_js/insertCategory.js"></script>&ndash;&gt;-->
+        <!--</f:view>-->
+    <!--</h:body>-->
+<!--</html>-->
