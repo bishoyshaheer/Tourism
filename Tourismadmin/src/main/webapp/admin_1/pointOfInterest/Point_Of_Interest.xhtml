@@ -16,6 +16,7 @@
                 <p:outputLabel value="#{label['poicat']}" for="acForce" />
                 <p:autoComplete id="acForce" dropdown="true" forceSelection="true" value="#{poi.catSelected}" completeMethod="#{poi.completeText}" required="true" />
                 <h:message for="acForce" style="color:red" />
+
                 </div>
 
 
@@ -30,11 +31,10 @@
 
             <div class="form-group">
                 <h:outputText value="#{label['PoiLabel']}" />
-
-                    <h:inputText id="POIName" styleClass="form-control input-number" value="#{poi.labelVal}" required="true">
-                        <f:validator validatorId="str" />
-                    </h:inputText>
-                    <h:message for="POIName" style="color:red" />
+                <h:inputText id="POIName" styleClass="form-control input-number" value="#{poi.label.get(0).value}" required="true">
+                    <f:validator validatorId="str" />
+                </h:inputText>
+                <h:message for="POIName" style="color:red" />
                      </div>
 
 

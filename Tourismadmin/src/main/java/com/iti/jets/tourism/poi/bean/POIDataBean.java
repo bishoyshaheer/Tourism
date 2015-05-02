@@ -198,8 +198,9 @@ public class POIDataBean {
         this.labelVal = labelVal;
     }
 
-    public void addLabelValue(){
-        labelArr.add(this.labelVal);
+    public String addLabelValue(){
+        labelArr.add("");
+        return null;
     }
 
     public void setCategoryValue(Map<String, List<String>> categoryValue) {
@@ -654,6 +655,7 @@ public class POIDataBean {
         System.out.println(baseTypeAdd.getValue());
         encodeString e=new encodeString();
         String y= e.getStringEncoded(label.get(0).getValue());
+        System.out.println(e.getStringDecoded(y));
        label.get(0).setValue(y);
         pointofinterest.addLabel(label.get(0));
         String y1= e.getStringEncoded(description.get(0).getValue());

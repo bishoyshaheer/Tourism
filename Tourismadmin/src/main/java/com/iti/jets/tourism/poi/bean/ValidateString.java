@@ -15,7 +15,10 @@ import java.util.regex.Pattern;
 @FacesValidator("str")
 public class ValidateString implements Validator {
     private static final String str_PATTERN ="^[A-Za-z, ]++$";
-
+//    "[\\pL&&\\p{L1}]+"
+// "[\u0600-\u06ff]|[\u0750-\u077f]|[\ufb50-\ufc3f]|[\ufe70-\ufefc]");
+  //|\p{InArabic}+"
+   // "^[A-Za-z, ]++$"
     private Pattern pattern;
     private Matcher matcher;
 
