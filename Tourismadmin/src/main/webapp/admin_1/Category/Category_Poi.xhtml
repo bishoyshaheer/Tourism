@@ -12,6 +12,15 @@
     <ui:define name="datacontent">
         <h:form role="form">
             <p:growl id="growlEnd" showDetail="true" sticky="true" />
+
+            <div class="form-group">
+                Language :
+                <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+                                 valueChangeListener="#{language.countryLocaleCodeChanged}">
+                    <f:selectItems value="#{language.countriesInMap}" />
+                </h:selectOneMenu>
+            </div>
+
             <div class="form-group">
                 <h:outputText value="#{label['CategoryTerm']}" />
                 <h:selectOneMenu styleClass="form-control" value="#{data.termType.term}">

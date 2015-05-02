@@ -1,5 +1,7 @@
 package com.iti.jets.tourism.poi.bean;
 
+import com.iti.jets.tourism.common.encodeString;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -21,19 +23,25 @@ public class ValidateString implements Validator {
    // "^[A-Za-z, ]++$"
     private Pattern pattern;
     private Matcher matcher;
-
+    private  Pattern p;
+    private Matcher m;
     public ValidateString(){
         pattern = Pattern.compile(str_PATTERN);
+        p = Pattern.compile("[\\u0600-\\u06ff]");
+//        p = Pattern.compile("[^\\p{InArabic}a-zA-Z0-9]+");
     }
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        matcher = pattern.matcher(o.toString());
-        if (!matcher.matches()) {
-            FacesMessage msg
-                    = new FacesMessage("Name validation failed.",
-                    "Invalid name ");
-            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(msg);
-        }
+
+//        matcher = pattern.matcher(o.toString());
+//        String s=new encodeString().getStringEncoded(o.toString());
+//         m = p.matcher(s.toString());
+//        if (!matcher.matches()) {
+//            FacesMessage msg
+//                    = new FacesMessage("Name validation failed.",
+//                    "Invalid name ");
+//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+//            throw new ValidatorException(msg);
+//        }
     }
 }

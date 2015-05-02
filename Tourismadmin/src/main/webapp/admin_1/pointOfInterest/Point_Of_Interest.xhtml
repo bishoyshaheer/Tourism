@@ -13,11 +13,18 @@
             <p:growl id="growlEnd" showDetail="true" sticky="true" />
 
            <div class="form-group">
+               Language :
+               <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+                                valueChangeListener="#{language.countryLocaleCodeChanged}">
+                   <f:selectItems value="#{language.countriesInMap}" />
+               </h:selectOneMenu>
+           </div>
+           <div class="form-group">
 
            </div>
 
             <div class="form-group">
-                <p:outputLabel value="#{label['poicat']}" for="acForce" />
+                <p:outputLabel value="#{label['poicat']}" for="acForce" dir="rtl" />
                 <p:autoComplete id="acForce" dropdown="true" forceSelection="true" value="#{poi.catSelected}" completeMethod="#{poi.completeText}" required="true" />
                 <h:message for="acForce" style="color:red" />
 
@@ -127,8 +134,10 @@
 
             <div id="success"></div>
 
-            <p:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" update="growlEnd" action="#{poi.insertPoi()}"/>
+
+            <h:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" update="growlEnd" actionListener="#{poi.insertPoi()}"/>
         </h:form>
+
     </ui:define>
 
     <ui:define name="anotheSide">

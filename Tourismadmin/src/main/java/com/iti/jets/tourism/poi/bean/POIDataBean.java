@@ -36,33 +36,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
-import javax.xml.ws.Response;
-
 import com.iti.jets.tourism.common.PolygonSplitter;
 import com.iti.jets.tourism.common.encodeString;
-import org.glassfish.jersey.client.ClientConfig;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.map.MarkerDragEvent;
-import org.primefaces.model.UploadedFile;
 import org.primefaces.model.map.*;
-
-import java.nio.file.Files;
-
-import com.iti.jets.tourism.poi.controller.GetImage;
-import org.primefaces.model.map.Polygon;
 
 /**
  *
