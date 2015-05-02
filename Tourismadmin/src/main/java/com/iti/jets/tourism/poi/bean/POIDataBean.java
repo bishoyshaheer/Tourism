@@ -39,8 +39,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -113,6 +116,7 @@ public class POIDataBean {
     private String polyTitle;
     List<String> labelArr=new ArrayList<>();
     private String labelVal;
+    List <String> imageURL=new ArrayList<>();
     static {
         try {
             Class.forName("com.iti.jets.tourism.admin.controller.category.AllCategories");
@@ -558,24 +562,22 @@ public class POIDataBean {
             if(!pathFile.exists())
                 pathFile.mkdir();
 
-            //C:\\com\Turism\images\Egypt\Restaurants\Spectra.jpg//save
-//            String absolutePath = System.getProperty("user.home");
-//            absolutePath+=poiData.toString();
             File f=new File(System.getProperty("user.home")+"/Tourism/Assets/");
             if(!f.exists())
                 f.mkdir();
             File file2=new File(f.getPath()+"/"+event.getFile().getFileName());
             OutputStream outputStream=new FileOutputStream(file2);
             outputStream.write(event.getFile().getContents());
-
-//            ClientConfig config = new ClientConfig();
-//
-//            Client client = ClientBuilder.newClient(config);
-//
-//            WebTarget target = client.target(getBaseURI());
-//
-//            System.out.println(target.path("rest").path("data").request());
-
+            HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            String schema=request.getScheme();
+            String serverName = request.getServerName();
+            int portNumber = request.getServerPort();
+            String url=schema+"://"+serverName+":"+portNumber+"/upload/image/"+event.getFile().getFileName();
+            POITermType img=new POITermType();
+            img.setType(event.getFile().getContentType());
+            img.setHref(url);
+            img.setTerm("related");
+            link.add(img);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -663,15 +665,13 @@ public class POIDataBean {
         pointofinterest.addDescription(description.get(0));
         pointofinterest.setBase(base);
         pointofinterest.setLang(Language);
-
-
         termAuthor.setValue("testAuthor");
         termAuthor.setTerm("primary");
         pointofinterest.setAuthor(termAuthor);
-//        if(!link.isEmpty()){
-//
-//            pointofinterest.addLink(linkURL.get(0));
-//        }
+        if(!linkURL.get(0).getHref().equals("")){
+            link.add(linkURL.get(0));
+        }
+        pointofinterest.setLink(link);
         pointofinterest.setCreated(new Date());
         pointofinterest.setDeleted(null);
         insertData insert = new insertData();
