@@ -4,17 +4,17 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define  name="formTitle"><h1> Place Data Entry</h1> </ui:define>
+    <ui:define  name="formTitle"><h2><h:outputText value="#{label['pDataEntry']}" /></h2> </ui:define>
 
     <ui:define name="insideformTitle"> </ui:define>
     <ui:define name="datacontent">
-       <h:form>
+       <h:form  dir="#{label['direction']}">
 
             <p:growl id="growlEnd" showDetail="true" sticky="true" />
 
            <div class="form-group">
-               Language :
-               <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+               <h:outputText value="#{label['lang']}" />
+               <h:selectOneMenu styleClass="form-control" value="#{language.localeCode}" onchange="submit()"
                                 valueChangeListener="#{language.countryLocaleCodeChanged}">
                    <f:selectItems value="#{language.countriesInMap}" />
                </h:selectOneMenu>
@@ -23,8 +23,8 @@
 
            </div>
 
-            <div class="form-group">
-                <p:outputLabel value="#{label['poicat']}" for="acForce" dir="rtl" />
+            <div class="form-group" >
+                <p:outputLabel value="#{label['poicat']}" for="acForce"  />
                 <p:autoComplete id="acForce" dropdown="true" forceSelection="true" value="#{poi.catSelected}" completeMethod="#{poi.completeText}" required="true" />
                 <h:message for="acForce" style="color:red" />
 
