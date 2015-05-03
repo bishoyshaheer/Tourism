@@ -626,6 +626,9 @@ public class POIDataBean {
         lngArr=new ArrayList<>();
         latArr=new ArrayList<>();
         lo.setPoint(pointArr);
+        encodeString e1=new encodeString();
+        String add=e1.getStringEncoded(baseTypeAdd.getValue());
+        baseTypeAdd.setValue(add);
         lo.setAddress(baseTypeAdd);
         pointofinterest.setLocation(lo);
 
