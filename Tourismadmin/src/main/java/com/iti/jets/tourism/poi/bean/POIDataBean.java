@@ -555,7 +555,8 @@ public class POIDataBean {
             String schema=request.getScheme();
             String serverName = request.getServerName();
             int portNumber = request.getServerPort();
-            String url=schema+"://"+serverName+":"+portNumber+"/upload/image/"+event.getFile().getFileName();
+//            String url=schema+"://"+serverName+":"+portNumber+"/upload/image/"+event.getFile().getFileName();
+            String url="/upload/image/"+event.getFile().getFileName();
             POITermType img=new POITermType();
             img.setType(event.getFile().getContentType());
             img.setHref(url);
