@@ -22,7 +22,7 @@ public class InsertDataRequest {
 
     private HttpURLConnection httpCon2;
 
-    public boolean insertIntoServer(String json, URL url) {
+    public String insertIntoServer(String json, URL url) {
         try {
             httpCon2 = (HttpURLConnection) url.openConnection();
             httpCon2.setRequestProperty("Content-Type", "text/json");
@@ -33,20 +33,20 @@ public class InsertDataRequest {
             out.write(json);
             out.close();
 
-            boolean response=getInsertionResponse();
-            if(response){
-                return true;
+            String response=getInsertionResponse();
+            if(response.equals("true")){
+                return "true";
             }
             else{
-                return false;
+                return response;
             }
         } catch (IOException ex) {
             Logger.getLogger(InsertDataRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return "false";
     }
 
-    public boolean getInsertionResponse() {
+    public String getInsertionResponse() {
         try {
             httpCon2.connect();
             InputStream is;
@@ -54,15 +54,15 @@ public class InsertDataRequest {
                 is = httpCon2.getErrorStream();
                 byte[] br3 = new byte[is.available()];
                 is.read(br3);
-                System.out.println(new String(br3));
-                return false;
+                System.out.println("response is Error : "+new String(br3));
+                return new String(br3);
 
             } else {
                 is = httpCon2.getInputStream();
                 byte[] br3 = new byte[is.available()];
                 is.read(br3);
-                System.out.println(new String(br3));
-                return true;
+                System.out.println("response is success  "+new String(br3));
+                return "true";
             }
 
         } catch (IOException ex) {
@@ -70,6 +70,6 @@ public class InsertDataRequest {
         } finally {
             httpCon2.disconnect();
         }
-        return false;
+        return "false";
     }
 }

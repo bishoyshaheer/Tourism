@@ -166,4 +166,20 @@ public class Location extends POIBaseType {
 	public boolean hasRelationships() {
 		return !relationship.isEmpty();
 	}
+
+	public void setPoint(List<Point> point) {
+		this.point = point;
+	}
+
+	public void setLine(List<Line> line) {
+		this.line = line;
+	}
+
+	public void setPolygon(List<Polygon> polygon) {
+		this.polygon = polygon;
+	}
+
+	public void setRelationship(List<Relationship> relationship) {
+		this.relationship = relationship;
+	}
 }

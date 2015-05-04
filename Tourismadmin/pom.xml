@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+	 <parent>
         <artifactId>tourismparent</artifactId>
         <groupId>com.iti</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    
     <artifactId>Tourismadmin</artifactId>
     <packaging>war</packaging>
     <name>Tourismadmin</name>
@@ -38,6 +39,12 @@
 			<version>5.2</version>
             <type>jar</type>
 		</dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>20041127.091804</version>
+        </dependency>
         
          <!--<dependency>-->
             <!--<groupId>org.hibernate</groupId>-->
@@ -51,12 +58,12 @@
             <!--<version>5.1.9</version>-->
         <!--</dependency>-->
         
-        <!--<dependency>-->
-            <!--<groupId>org.glassfish.jersey.containers</groupId>-->
-            <!--&lt;!&ndash; if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core"  &ndash;&gt;-->
-            <!--<artifactId>jersey-container-servlet</artifactId>-->
-            <!--<version>2.17</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core"  -->
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.17</version>
+        </dependency>
         
         <dependency>
             <groupId>com.sun.faces</groupId>

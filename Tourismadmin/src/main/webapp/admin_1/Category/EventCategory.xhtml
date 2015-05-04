@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../common/Template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define  name="formTitle"><h2>Event Category Data Entry</h2> </ui:define>
+
+    <ui:define name="insideformTitle">  Data Entry </ui:define>
+
+    <ui:define name="datacontent">
+        <h:form role="form">
+
+            <div class="form-group">
+                <h:outputText value="#{label['CategoryTerm']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{event.termType.term}">
+                    <f:selectItems value="#{event.termtypeList}" />
+                </h:selectOneMenu>
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['CategoryLabel']}" />
+                <h:inputText styleClass="form-control" id="catLabel" value="#{event.termType.value}" required="true"/>
+                <h:message for="catLabel" style="color:red" />
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['CategoryLang']}" />
+                <h:inputText styleClass="form-control" id="cateLang" value="#{event.termType.lang}" required="true"/>
+                <h:message for="cateLang" style="color:red" />
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelValue']}" />
+                <h:inputText styleClass="form-control" id="labelVal" value="#{event.label.get(0).value}" required="true"/>
+                <h:message for="labelVal" style="color:red" />
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelTerm']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{event.label.get(0).term}">
+                    <f:selectItems value="#{event.termtypeList}" />
+                </h:selectOneMenu>
+            </div>
+
+            <div class="form-group">
+                <h:outputText value="#{label['LabelLang']}" />
+                <h:inputText styleClass="form-control" id="catLang" value="#{event.label.get(0).lang}" required="true"/>
+                <h:message for="catLang" style="color:red" />
+
+            </div>
+            <div class="form-group">
+                <h:outputText value="#{label['Description']}" />
+                <p:inputTextarea rows="6" cols="33" styleClass="form-control" id="catDesc" value="#{event.baseType.value}" required="true"/>
+               <h:message for="catDesc" style="color:red" />
+            </div>
+
+
+            <div id="success"></div>
+
+            <h:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" action="#{event.insertData()}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

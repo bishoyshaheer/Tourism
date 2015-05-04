@@ -1,0 +1,32 @@
+<html xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<head>
+
+    <title>testdynamic</title>
+</head>
+
+<h:body>
+    <f:view>
+    <h:form  id="form1">
+
+
+    <table>
+    <tr>
+        <td>
+            <h:panelGrid binding="#{backing_testdynamic.gridComponent}" onchange="#{backing_testdynamic.data}">
+            </h:panelGrid>
+        </td>
+
+        </tr>
+        </table>
+   <h:commandLink  value="Add more rows" action="#{backing_testdynamic.addFunction}">
+
+</h:commandLink>
+        <h:commandButton value="Add more rows" action="#{backing_testdynamic.view}">
+
+        </h:commandButton>
+
+</h:form>
+    </f:view>
+
+</h:body>
+</html>

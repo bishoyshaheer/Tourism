@@ -5,7 +5,6 @@
  */
 package com.iti.jets.tourism.admin.controller.category;
 
-
 import citysdk.tourism.client.exceptions.InvalidParameterException;
 import citysdk.tourism.client.exceptions.InvalidParameterTermException;
 import citysdk.tourism.client.exceptions.InvalidValueException;
@@ -36,9 +35,12 @@ import java.util.logging.Logger;
 public class AllCategories {
 
     static Map<String, List<String>> categoryValue;
+    static Map<String, String> categoryValueID;
     static Map<String, List<POITermType>> categoryValueTwo;
-    private static List<String> labelVal = new ArrayList<>();
+    private static List<String> labelVal;
+    private static List<String> labelValues;
     private static List<String> catId;
+    private static List<String> catVal;
 
     public AllCategories() {
         getCategory();
@@ -55,23 +57,49 @@ public class AllCategories {
             ParameterList list = new ParameterList();
             // the parameter list according to the type of categories to be returned
             list.add(new Parameter(ParameterTerms.LIST, ParameterTerms.POIS.getTerm()));
+           list.add(new Parameter(ParameterTerms.LIMIT, -1));
             Category cat = tourismClient.getCategories(list);
             List<Category> categories = cat.getSubCategories();
+            categories.get(0).getValue();
+            System.out.println(categories.get(0).getValue());
             categoryValueTwo = new HashMap<>();
+            categoryValueID=new HashMap<>();
             categoryValue = new HashMap<>();
             catId = new ArrayList<>();
+            labelValues=new ArrayList<>();
+            catVal=new ArrayList<>();
             for (Category categorie : categories) {
+
+                // get the Value Of the Category
+                catVal.add(categorie.getValue());
+                categoryValueID.put(categorie.getId(),categorie.getValue());
+                //store the CatID and Cat Value that is UNIQUE in HashMap CatValueID
+
+
+                // get the Label Of the Category
                 List<POITermType> categoryLabel = categorie.getLabel();
-                labelVal.clear();
+                labelVal = new ArrayList<>();
+
+                // iterate Through Label and Get its Values
                 for (POITermType categoryLabel1 : categoryLabel) {
                     labelVal.add(categoryLabel1.getValue());
                 }
-                // System.out.println(labelVal.get(0) + "");
+//                 System.out.println(labelVal.get(0) + "");
                 catId.add(categorie.getId());
                 categoryValue.put(categorie.getId(), labelVal);
                 categoryValueTwo.put(categorie.getId(), categoryLabel);
             }
-        } catch (InvalidParameterException ex) {
+
+            for (Map.Entry<String, List<String>> entry : categoryValue.entrySet()) {
+
+                String key = entry.getKey();
+                List<String> values = entry.getValue();
+                for (int i = 0; i < values.size(); i++) {
+                    labelValues.add(values.get(0));
+                    //  System.out.println("Test");
+                }
+            }
+            } catch (InvalidParameterException ex) {
             Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidValueException ex) {
             Logger.getLogger(POIDataBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,10 +125,44 @@ public class AllCategories {
     }
 
     public Map<String, List<String>> getCategoryValID() {
+       
         return categoryValue;
     }
 
+
     public Map<String, List<POITermType>> getCategoryMap() {
         return categoryValueTwo;
+    }
+
+    public List<String> getLabelValues(){
+        return labelValues;
+    }
+
+    public List<String> getCategoryValues(){return catVal;}
+
+    public Map<String, String> getCategoryValueID(){return categoryValueID;}
+
+    public  String getIDFromValue(String value){
+        for (Map.Entry<String,String> entry : categoryValueID.entrySet()) {
+
+            String key = entry.getKey();
+            String values = entry.getValue();
+           if(value.equals(values)){
+               System.out.println(key);
+               return key;
+           }
+        }
+        return "error";
+    }
+
+    public boolean checkAvailability(String str){
+
+        for (int i = 0; i < catVal.size(); i++) {
+            if(str.equals(catVal.get(i))){
+                return false;
+            }
+        }
+        return true;
+
     }
 }
