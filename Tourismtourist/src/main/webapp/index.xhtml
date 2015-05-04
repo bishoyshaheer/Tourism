@@ -57,6 +57,19 @@
                                 </nav>
                             </div>
                         </div>
+                        <p:tabView value="#{homeApplicationBean.categoriesMap}" var="cat">
+                            <p:tab title="#{cat.key}">
+                                <p:dataList value="#{cat.value}" var="catVal" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+                                    <ui:remove>
+                                        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
+                                            <f:setPropertyActionListener value="#{car}" target="#{dataListView.selectedCar}" />
+                                            <h:outputText value="#{car.brand}, #{car.year}" />
+                                        </p:commandLink>
+                                    </ui:remove>
+                                    <h:outputText value="#{catVal}" style="display:inline-block; cursor: pointer; cursor: hand;"/>
+                                </p:dataList>
+                            </p:tab>
+                        </p:tabView>
                     </section>
                     <section id="section-category-details" class="section appear clearfix">
                         <div class="row">

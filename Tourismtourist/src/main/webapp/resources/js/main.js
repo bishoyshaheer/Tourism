@@ -24,7 +24,7 @@
     function protfolioOnClickCategories() {
         if ($('.isotopeWrapper').length) {
 
-            $('#filter a').click(function () {
+            $('.ui-datalist-nobullets li').click(function () {
                 $("html, body").animate({scrollTop: $("#section-category-details").offset().top}, "slow");
 //                console.log($(this));
                 $('#filter a').removeClass('current');
@@ -219,11 +219,12 @@
         }
     };
     function handleCategories(data, textStatus, jqXHR) {
+        console.log(data);
         var categories = [];
         jQuery.each(data.categories, function (index, value) {
             categories[index] = DataReader.getLabel(data.categories[index], term.LABEL_TERM_PRIMARY, "pt-PT");
 //            categories[index] = DataReader.getLabel(data.categories[index], term.LABEL_TERM_PRIMARY, "nl-NL");
-            $("#ulCategories").append('<li><a href="#"  class="btn-theme btn-small" >' + categories[index] + '</a></li>');
+//            $("#ulCategories").append('<li><a href="#"  class="btn-theme btn-small" >' + categories[index] + '</a></li>');
         });
         protfolioOnClickCategories();
     }

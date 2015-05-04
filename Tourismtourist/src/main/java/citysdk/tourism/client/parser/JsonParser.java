@@ -179,9 +179,9 @@ public class JsonParser {
 		if (json == null)
 			return null;
 
-		Logger logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
-		logger.fine("Deserializing for " + clazz);
-		logger.finest("JSON is: " + json);
+//		Logger logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
+		System.out.println("Deserializing for " + clazz);
+		System.out.println("JSON is: " + json);
 		Deserializable deserialize;
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(clazz, new POIDeserializer());
@@ -193,7 +193,7 @@ public class JsonParser {
 			throw new UnknownErrorException("There was an error handling the request: " + e.getMessage(), e);
 		}
 		
-		logger.fine("Done deserialization");
+		System.out.println("Done deserialization");
 		return deserialize;
 	}
 }

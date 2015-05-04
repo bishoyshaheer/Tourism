@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>JSF 2.0 Hello World</title>
+    </h:head>
+    <h:body>
+        <h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
+        <p:tabView value="#{homeApplicationBean.categoriesMap}" var="cat">
+            <p:tab title="#{cat.key}">
+                <p:dataList value="#{cat.value}" var="catVal" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+                    <ui:remove>
+                        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
+                            <f:setPropertyActionListener value="#{car}" target="#{dataListView.selectedCar}" />
+                            <h:outputText value="#{car.brand}, #{car.year}" />
+                        </p:commandLink>
+                    </ui:remove>
+                    <h:outputText value="#{catVal}" style="display:inline-block"/>
+                </p:dataList>
+            </p:tab>
+        </p:tabView>
+    </h:body>
+</html>

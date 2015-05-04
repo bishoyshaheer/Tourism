@@ -28,7 +28,7 @@ public class ClientUtil {
         
     }
     
-    public TourismClient getClient()  throws IOException, UnknownErrorException, ServerErrorException{
+    public static TourismClient getClient()  throws IOException, UnknownErrorException, ServerErrorException{
         // get a factory instance
         TourismClientFactory factory = TourismClientFactory.getInstance();
         TourismClient client;

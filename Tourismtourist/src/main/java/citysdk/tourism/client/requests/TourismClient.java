@@ -81,7 +81,7 @@ public class TourismClient implements Cloneable {
 		this.homeUrl = homeUrl;
 		this.resources = links;
 		this.parser = new JsonParser(null);
-		initLogging();
+//		initLogging();
 	}
 
 	protected TourismClient(TourismClient client) {
@@ -89,13 +89,13 @@ public class TourismClient implements Cloneable {
 		this.resources = client.resources;
 		this.version = client.version;
 		this.parser = new JsonParser(null);
-		initLogging();
+//		initLogging();
 	}
 	
-	private void initLogging() {
-		this.logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
-		this.logger.setLevel(Level.INFO);
-	}
+//	private void initLogging() {
+//		this.logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
+//		this.logger.setLevel(Level.INFO);
+//	}
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException {

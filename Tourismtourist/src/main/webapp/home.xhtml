@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+        <title>Blueprint: Background Slideshow</title>
+        <meta name="description" content="Blueprint: Background Slideshow" />
+        <meta name="keywords" content="blueprint, background image slideshow, fullscreen slideshow, jquery, fullscreen image, web development" />
+        <meta name="author" content="Codrops" />
+        <h:outputStylesheet library="CSS" name="default.css"/>
+        <h:outputStylesheet library="CSS" name="component.css"/>
+        <h:outputStylesheet library="CSS" name="map-icons.css"/>
+        <h:outputScript library="JS"  name="modernizr.custom.js"/>
+    </h:head>
+    <h:body>
+        <f:view>
+            <div class="main">
+                <ul id="cbp-bislideshow" class="cbp-bislideshow">
+                    <li><p:graphicImage library="IMAGES" name="1.jpg" alt="image01"/></li>
+                    <li><p:graphicImage library="IMAGES" name="2.jpg" alt="image02"/></li>
+                    <li><p:graphicImage library="IMAGES" name="3.jpg" alt="image03"/></li>
+                    <li><p:graphicImage library="IMAGES" name="4.jpg" alt="image04"/></li>
+                    <li><p:graphicImage library="IMAGES" name="5.jpg" alt="image05"/></li>
+                    <li><p:graphicImage library="IMAGES" name="6.jpg" alt="image06"/></li>
+                </ul>
+                <div id="cbp-bicontrols" class="cbp-bicontrols">
+                    <span class="cbp-biprev"></span>
+                    <span class="cbp-bipause"></span>
+                    <span class="cbp-binext"></span>
+                </div>
+            </div>
+            <nav id="cbp-hrmenu" class="cbp-hrmenu">
+                <ul>
+                    <ui:repeat value="#{homeApplicationBean.categoriesMap}" var="cat">
+                        <li>
+                            <a href="#"><h:outputText value="#{cat.key}"/></a>
+                            <div class="cbp-hrsub">
+                                <div class="cbp-hrsub-inner">
+                                    <!-- <div>
+                                            <h4>Learning &amp; Games</h4>
+                                            <ul>
+                                                    <li><a href="#">Catch the Bullet</a></li>
+                                                    <li><a href="#">Snoopydoo</a></li>
+                                                    <li><a href="#">Fallen Angel</a></li>
+                                                    <li><a href="#">Sui Maker</a></li>
+                                                    <li><a href="#">Wave Master</a></li>
+                                                    <li><a href="#">Golf Pro</a></li>
+                                            </ul>
+                                    </div>
+                                    <div>
+                                            <h4>Utilities</h4>
+                                            <ul>
+                                                    <li><a href="#">Gadget Finder</a></li>
+                                                    <li><a href="#">Green Tree Express</a></li>
+                                                    <li><a href="#">Green Tree Pro</a></li>
+                                                    <li><a href="#">Wobbler 3.0</a></li>
+                                                    <li><a href="#">Coolkid</a></li>
+                                            </ul>
+                                    </div>
+                                    <div>
+                                            <h4>Education</h4>
+                                            <ul>
+                                                    <li><a href="#">Learn Thai</a></li>
+                                                    <li><a href="#">Math Genius</a></li>
+                                                    <li><a href="#">Chemokid</a></li>
+                                            </ul>
+                                            <h4>Professionals</h4>
+                                            <ul>
+                                                    <li><a href="#">Success 1.0</a></li>
+                                                    <li><a href="#">Moneymaker</a></li>
+                                            </ul>
+                                    </div> -->
+
+                                    <!-- trying the grid system for sub-categories-->
+
+                                    <ul class="cbp-ig-grid">
+
+                                        <ui:repeat value="#{cat.value}" var="catVal">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="cbp-ig-icon map-icon-car-rental"></span>
+                                                    <h3 class="cbp-ig-title"><h:outputText value="#{catVal}" style="display: inline"/></h3>
+                                                    <!--<span class="cbp-ig-category">Fashion</span>-->
+                                                </a>
+                                            </li>
+                                        </ui:repeat>
+                                        <!--                                        <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-car-rental"></span>
+                                                                                        <h3 class="cbp-ig-title">Squid voluptate</h3>
+                                                                                        <span class="cbp-ig-category">Fashion</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-park"></span>
+                                                                                        <h3 class="cbp-ig-title">Squid voluptate</h3>
+                                                                                        <span class="cbp-ig-category">Fashion</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-audio-description"></span>
+                                                                                        <h3 class="cbp-ig-title">Cosby sweater</h3>
+                                                                                        <span class="cbp-ig-category">Lifestyle</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-archery"></span>
+                                                                                        <h3 class="cbp-ig-title">Commodo</h3>
+                                                                                        <span class="cbp-ig-category">Food</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-climbing"></span>
+                                                                                        <h3 class="cbp-ig-title">Bitters kitsch</h3>
+                                                                                        <span class="cbp-ig-category">Gadgets</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-baseball"></span>
+                                                                                        <h3 class="cbp-ig-title">Austin proident</h3>
+                                                                                        <span class="cbp-ig-category">Music</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-baseball"></span>
+                                                                                        <h3 class="cbp-ig-title">Austin proident</h3>
+                                                                                        <span class="cbp-ig-category">Music</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-baseball"></span>
+                                                                                        <h3 class="cbp-ig-title">Austin proident</h3>
+                                                                                        <span class="cbp-ig-category">Music</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="cbp-ig-icon map-icon-baseball"></span>
+                                                                                        <h3 class="cbp-ig-title">Austin proident</h3>
+                                                                                        <span class="cbp-ig-category">Music</span>
+                                                                                    </a>
+                                                                                </li>-->
+                                    </ul>
+
+                                </div><!-- /cbp-hrsub-inner -->
+                            </div><!-- /cbp-hrsub -->
+                        </li>
+
+                        <!--here category tabs end-->
+
+                        <!--                    <li>
+                                                <a href="#">Downloads</a>
+                                                <div class="cbp-hrsub">
+                                                    <div class="cbp-hrsub-inner">
+                                                        <div>
+                                                            <h4>Education &amp; Learning</h4>
+                                                            <ul>
+                                                                <li><a href="#">Learn Thai</a></li>
+                                                                <li><a href="#">Math Genius</a></li>
+                                                                <li><a href="#">Chemokid</a></li>
+                                                            </ul>
+                                                            <h4>Professionals</h4>
+                                                            <ul>
+                                                                <li><a href="#">Success 1.0</a></li>
+                                                                <li><a href="#">Moneymaker</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Entertainment</h4>
+                                                            <ul>
+                                                                <li><a href="#">Gadget Finder</a></li>
+                                                                <li><a href="#">Green Tree Express</a></li>
+                                                                <li><a href="#">Green Tree Pro</a></li>
+                                                                <li><a href="#">Holy Cannoli</a></li>
+                                                                <li><a href="#">Wobbler 3.0</a></li>
+                                                                <li><a href="#">Coolkid</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Games</h4>
+                                                            <ul>
+                                                                <li><a href="#">Catch the Bullet</a></li>
+                                                                <li><a href="#">Snoopydoo</a></li>
+                                                                <li><a href="#">Fallen Angel</a></li>
+                                                                <li><a href="#">Sui Maker</a></li>
+                                                                <li><a href="#">Wave Master</a></li>
+                                                                <li><a href="#">Golf Pro</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div> /cbp-hrsub-inner 
+                                                </div> /cbp-hrsub 
+                                            </li>
+                                            <li>
+                                                <a href="#">Applications</a>
+                                                <div class="cbp-hrsub">
+                                                    <div class="cbp-hrsub-inner"> 
+                                                        <div>
+                                                            <h4>Learning &amp; Games</h4>
+                                                            <ul>
+                                                                <li><a href="#">Catch the Bullet</a></li>
+                                                                <li><a href="#">Snoopydoo</a></li>
+                                                            </ul>
+                                                            <h4>Utilities</h4>
+                                                            <ul>
+                                                                <li><a href="#">Gadget Finder</a></li>
+                                                                <li><a href="#">Green Tree Express</a></li>
+                                                                <li><a href="#">Green Tree Pro</a></li>
+                                                                <li><a href="#">Wobbler 3.0</a></li>
+                                                                <li><a href="#">Coolkid</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Education</h4>
+                                                            <ul>
+                                                                <li><a href="#">Learn Thai</a></li>
+                                                                <li><a href="#">Math Genius</a></li>
+                                                                <li><a href="#">Chemokid</a></li>
+                                                            </ul>
+                                                            <h4>Professionals</h4>
+                                                            <ul>
+                                                                <li><a href="#">Success 1.0</a></li>
+                                                                <li><a href="#">Moneymaker</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div> /cbp-hrsub-inner 
+                                                </div> /cbp-hrsub 
+                                            </li>
+                                            <li>
+                                                <a href="#">Projects</a>
+                                                <div class="cbp-hrsub">
+                                                    <div class="cbp-hrsub-inner"> 
+                                                        <div>
+                                                            <h4>Learning &amp; Games</h4>
+                                                            <ul>
+                                                                <li><a href="#">Catch the Bullet</a></li>
+                                                                <li><a href="#">Snoopydoo</a></li>
+                                                                <li><a href="#">Fallen Angel</a></li>
+                                                                <li><a href="#">Sui Maker</a></li>
+                                                                <li><a href="#">Wave Master</a></li>
+                                                                <li><a href="#">Golf Pro</a></li>
+                                                            </ul>
+                                                            <h4>Utilities</h4>
+                                                            <ul>
+                                                                <li><a href="#">Gadget Finder</a></li>
+                                                                <li><a href="#">Green Tree Express</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Entertainment</h4>
+                                                            <ul>
+                                                                <li><a href="#">Gadget Finder</a></li>
+                                                                <li><a href="#">Green Tree Express</a></li>
+                                                                <li><a href="#">Green Tree Pro</a></li>
+                                                                <li><a href="#">Holy Cannoli</a></li>
+                                                                <li><a href="#">Wobbler 3.0</a></li>
+                                                                <li><a href="#">Coolkid</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div> /cbp-hrsub-inner 
+                                                </div> /cbp-hrsub 
+                                            </li>
+                                            <li>
+                                                <a href="#">Freeware</a>
+                                                <div class="cbp-hrsub">
+                                                    <div class="cbp-hrsub-inner"> 
+                                                        <div>
+                                                            <h4>Utilities</h4>
+                                                            <ul>
+                                                                <li><a href="#">Green Tree Pro</a></li>
+                                                                <li><a href="#">Wobbler 3.0</a></li>
+                                                                <li><a href="#">Coolkid</a></li>
+                                                            </ul>
+                                                            <h4>Education</h4>
+                                                            <ul>
+                                                                <li><a href="#">Learn Thai</a></li>
+                                                                <li><a href="#">Math Genius</a></li>
+                                                                <li><a href="#">Chemokid</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Professionals</h4>
+                                                            <ul>
+                                                                <li><a href="#">Success 1.0</a></li>
+                                                                <li><a href="#">Moneymaker</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Learning &amp; Games</h4>
+                                                            <ul>
+                                                                <li><a href="#">Catch the Bullet</a></li>
+                                                                <li><a href="#">Snoopydoo</a></li>
+                                                                <li><a href="#">Fallen Angel</a></li>
+                                                                <li><a href="#">Sui Maker</a></li>
+                                                                <li><a href="#">Wave Master</a></li>
+                                                                <li><a href="#">Golf Pro</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div> /cbp-hrsub-inner 
+                                                </div> /cbp-hrsub 
+                                            </li>-->
+                    </ui:repeat>
+                </ul>
+                <div class="main">
+                    
+                </div>
+            </nav>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <!-- imagesLoaded jQuery plugin by @desandro : https://github.com/desandro/imagesloaded -->
+
+            <h:outputScript library="JS"  name="jquery.imagesloaded.min.js"/>
+            <h:outputScript library="JS"  name="cbpBGSlideshow.min.js"/>
+            <h:outputScript library="JS"  name="cbpHorizontalMenu.js"/>
+            <h:outputScript library="JS"  name="jquery-ui.min.js"/>
+            <script>
+                $(function () {
+                    cbpBGSlideshow.init();
+                    cbpHorizontalMenu.init();
+
+
+                    var $listItems = $('.cbp-hrsub-inner > ul > li'),
+                            $menuItems = $listItems.children('a'),
+                            $body = $('body'),
+                            $current = null;
+
+
+                    // function init() {
+                    $menuItems.on('click', open);
+                    $listItems.on('click', function (event) {
+                        event.stopPropagation();
+                    });
+                    // }
+
+                    function open(event) {
+
+                        // console.log($menuItems);
+
+                        $(".cbp-hrsub-inner > ul").removeClass().addClass("cbp-vimenu");
+
+//                        if (current !== -1) {
+//                            $listItems.eq(current).removeClass('cbp-vicurrent');
+//                        }
+
+
+                        if ($current !== null) {
+                            console.log($current);
+                            $current.removeClass("cbp-vicurrent");
+                        }
+
+                        var $item = $(event.currentTarget).parent('li');
+                        $current = $item,
+                                idx = $item.index();
+//                        if (current === idx) {
+                        $item.addClass('cbp-vicurrent');
+//                            current = -1;
+//                            close();
+//                        }
+//                        else {
+//                            $item.addClass('cbp-vicurrent');
+//                            current = idx;
+//
+//
+//                            // 	$("#cbp-hrmenu").position({
+//                            // 	"my": "center center",
+//                            // 	"at": "center top",
+//                            // 	"of": $("#cbp-bicontrols"),
+//                            // 	using: function( position ) {
+//                            // 		$( this ).animate( position );
+//                            // 	}
+//                            // });
+//
+//                            $body.off('click').on('click', close);
+//                        }
+
+                        console.log($current);
+//                        current = -1;
+                        return false;
+
+                    }
+
+//                    function close(event) {
+//                        $listItems.eq(current).removeClass('cbp-vicurrent');
+//                        current = -1;
+//                        // $("#cbp-hrmenu").position({
+//                        // 	"my": "center bottom",
+//                        // 	"at": "center bottom",
+//                        // 	"of": window,
+//                        // 	using: function( position ) {
+//                        // 		$( this ).animate( position );
+//                        // 	}
+//                        // });
+//                    }
+
+                    // return { init : init };
+
+                });
+            </script>
+        </f:view>
+    </h:body>
+</html>
