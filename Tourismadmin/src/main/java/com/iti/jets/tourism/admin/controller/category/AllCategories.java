@@ -19,6 +19,7 @@ import citysdk.tourism.client.requests.ParameterList;
 import citysdk.tourism.client.requests.TourismClient;
 import citysdk.tourism.client.requests.TourismClientFactory;
 import citysdk.tourism.client.terms.ParameterTerms;
+import com.iti.jets.tourism.common.encodeString;
 import com.iti.jets.tourism.poi.bean.POIDataBean;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class AllCategories {
     private static List<String> labelValues;
     private static List<String> catId;
     private static List<String> catVal;
+    private static Category category;
+    static  List<Category> categories=new ArrayList<>();
 
     public AllCategories() {
         getCategory();
@@ -59,7 +62,7 @@ public class AllCategories {
             list.add(new Parameter(ParameterTerms.LIST, ParameterTerms.POIS.getTerm()));
            list.add(new Parameter(ParameterTerms.LIMIT, -1));
             Category cat = tourismClient.getCategories(list);
-            List<Category> categories = cat.getSubCategories();
+           categories = cat.getSubCategories();
             categories.get(0).getValue();
             System.out.println(categories.get(0).getValue());
             categoryValueTwo = new HashMap<>();
@@ -70,7 +73,12 @@ public class AllCategories {
             catVal=new ArrayList<>();
             for (Category categorie : categories) {
 
-                // get the Value Of the Category
+//                 get the Value Of the Category
+               encodeString e=new encodeString();
+                String encode=e.getStringEncoded(categorie.getValue());
+                String decode=e.getStringDecoded(categorie.getValue());
+//                System.out.println(categorie.getValue());
+//              /  System.out.println(decode);
                 catVal.add(categorie.getValue());
                 categoryValueID.put(categorie.getId(),categorie.getValue());
                 //store the CatID and Cat Value that is UNIQUE in HashMap CatValueID
@@ -130,12 +138,20 @@ public class AllCategories {
     }
 
 
-    public Map<String, List<POITermType>> getCategoryMap() {
-        return categoryValueTwo;
-    }
+//    public Map<String, List<POITermType>> getCategoryMap() {
+//        return categoryValueTwo;
+//    }
+//
+//    public List<String> getLabelValues(){
+//        return labelValues;
+//    }
 
-    public List<String> getLabelValues(){
-        return labelValues;
+    public Category getCategoryFromValue(String val){
+        for (int i = 0; i <categories.size() ; i++) {
+            if(categories.get(i).getValue().equals(val))
+                category=categories.get(i);
+        }
+        return category;
     }
 
     public List<String> getCategoryValues(){return catVal;}

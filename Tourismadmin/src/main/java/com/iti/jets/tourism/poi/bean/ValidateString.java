@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  */
 @FacesValidator("str")
 public class ValidateString implements Validator {
-    private static final String str_PATTERN ="^[A-Za-z, ]++$";
+    private static final String str_PATTERN ="^[A-Za-z\\u0600-\\u06ff\\ufb50-\\ufdff\\ufe70-\\ufeff]++$";
 //    "[\\pL&&\\p{L1}]+"
 // "[\u0600-\u06ff]|[\u0750-\u077f]|[\ufb50-\ufc3f]|[\ufe70-\ufefc]");
   //|\p{InArabic}+"
@@ -33,15 +33,15 @@ public class ValidateString implements Validator {
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
 
-//        matcher = pattern.matcher(o.toString());
-//        String s=new encodeString().getStringEncoded(o.toString());
-//         m = p.matcher(s.toString());
-//        if (!matcher.matches()) {
-//            FacesMessage msg
-//                    = new FacesMessage("Name validation failed.",
-//                    "Invalid name ");
-//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-//            throw new ValidatorException(msg);
-//        }
+        matcher = pattern.matcher(o.toString());
+        String s=new encodeString().getStringEncoded(o.toString());
+         m = p.matcher(s.toString());
+        if (!matcher.matches()) {
+            FacesMessage msg
+                    = new FacesMessage("Name validation failed.",
+                    "Invalid name ");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
+        }
     }
 }

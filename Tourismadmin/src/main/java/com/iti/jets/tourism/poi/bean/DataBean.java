@@ -5,6 +5,7 @@
  */
 package com.iti.jets.tourism.poi.bean;
 
+import citysdk.tourism.client.poi.single.POI;
 import com.iti.jets.tourism.admin.*;
 import com.iti.jets.tourism.admin.controller.category.AllCategories;
 import com.iti.jets.tourism.admin.controller.request.*;
@@ -46,7 +47,8 @@ public class DataBean implements Serializable {
     private List<String> langList=new ArrayList<>();
     private List<Category> subCategories=new ArrayList<>();
     private List<String> subCatTerm=new ArrayList<>();
-
+    private List<String> catVal=new ArrayList<>();
+    private String catSelected;
     public DataBean() {
         cat = new Category();
         baseType = new POIBaseType();
@@ -60,6 +62,36 @@ public class DataBean implements Serializable {
         subCategories.add(new Category());
         subCatTerm.add("category");
         subCatTerm.add("tag");
+
+        AllCategories cat = new AllCategories();
+        catVal.add("");
+        catVal = cat.getCategoryValues();
+    }
+
+    public List<String> getCatVal() {
+        return catVal;
+    }
+
+    public void setCatVal(List<String> catVal) {
+        this.catVal = catVal;
+    }
+
+    public List<String> completeText(String query) {
+        List<String> results = new ArrayList<String>();
+        for(int i = 0; i < catVal.size(); i++) {
+            if(catVal.get(i).contains(query))
+                results.add(catVal.get(i));
+        }
+
+        return results;
+    }
+
+    public String getCatSelected() {
+        return catSelected;
+    }
+
+    public void setCatSelected(String catSelected) {
+        this.catSelected = catSelected;
     }
 
     public void setCat(Category cat) {
@@ -168,11 +200,6 @@ public class DataBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
 
         BASE64Encoder encoder = new BASE64Encoder();
-
-//        encodeString e=new encodeString();
-//       String y= e.getStringEncoded(baseType.getValue());
-//        baseType.setValue(y);
-  //      e.getStringDecoded(y);
         AllCategories categ=new AllCategories();
         boolean test=categ.checkAvailability(termType.getValue());
         if(test) {
@@ -183,14 +210,16 @@ public class DataBean implements Serializable {
             cat.setValue(termType.getValue());
             cat.setTerm(termType.getTerm());
             cat.setLang(termType.getLang());
+            String y=e.getStringEncoded(label.get(0).getValue());
+            label.get(0).setValue(y);
             cat.addLabel(label.get(0));
-//            x= e.getStringEncoded(baseType.getValue());
-//            baseType.setValue(x);
-//            cat.addDescription(baseType);
-           // System.out.println("Test "+cat.getDescription());
             subCategories.get(0).setCreated(new Date());
             subCategories.get(0).setDeleted(null);
-            cat.addCategory(subCategories.get(0));
+            POITermType subCate=new POITermType();
+            subCate.setValue(catSelected);
+            AllCategories all=new AllCategories();
+
+            cat.addCategory(all.getCategoryFromValue(catSelected));
             termAuthor.setValue("testAuthor");
             termAuthor.setTerm("primary");
             cat.setAuthor(termAuthor);
