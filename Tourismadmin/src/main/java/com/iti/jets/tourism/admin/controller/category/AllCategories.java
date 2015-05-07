@@ -147,6 +147,9 @@ public class AllCategories {
 //    }
 
     public Category getCategoryFromValue(String val){
+        if(val.equals("") || val.equals(null)){
+            return new Category();
+        }
         for (int i = 0; i <categories.size() ; i++) {
             if(categories.get(i).getValue().equals(val))
                 category=categories.get(i);

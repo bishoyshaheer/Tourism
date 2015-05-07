@@ -218,7 +218,6 @@ public class DataBean implements Serializable {
             POITermType subCate=new POITermType();
             subCate.setValue(catSelected);
             AllCategories all=new AllCategories();
-
             cat.addCategory(all.getCategoryFromValue(catSelected));
             termAuthor.setValue("testAuthor");
             termAuthor.setTerm("primary");
