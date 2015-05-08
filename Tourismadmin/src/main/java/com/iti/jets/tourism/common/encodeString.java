@@ -19,7 +19,7 @@ public class encodeString {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        System.out.println("ecncoded value is " + new String(bytesEncoded ));
+      //  System.out.println("ecncoded value is " + new String(bytesEncoded ));
         return new String(bytesEncoded );
     }
 
@@ -27,11 +27,13 @@ public class encodeString {
       //  byte[] valueDecoded= Base64.getDecoder().decode(str);
 
         byte[] valueDecoded= Base64.decodeBase64(str.getBytes());
+        String decode = null;
         try {
-            System.out.println("Decoded value is " + new String(valueDecoded,"UTF-8"));
+            decode=new String(valueDecoded,"UTF-8");
+           // System.out.println("Decoded value is " + new String(valueDecoded,"UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return new String(valueDecoded);
+        return decode;
     }
 }

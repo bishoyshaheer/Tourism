@@ -181,13 +181,6 @@ public class DataBean implements Serializable {
             OutputStream outputStream=new FileOutputStream(file2);
             outputStream.write(event.getFile().getContents());
 
-//            ClientConfig config = new ClientConfig();
-//
-//            Client client = ClientBuilder.newClient(config);
-//
-//            WebTarget target = client.target(getBaseURI());
-//
-//            System.out.println(target.path("rest").path("data").request());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -200,9 +193,9 @@ public class DataBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
 
         BASE64Encoder encoder = new BASE64Encoder();
-        AllCategories categ=new AllCategories();
-        boolean test=categ.checkAvailability(termType.getValue());
-        if(test) {
+//        AllCategories categ=new AllCategories();
+//        boolean test=categ.checkAvailability(termType.getValue());
+//        if(test) {
             encodeString e=new encodeString();
             String x;
             x= e.getStringEncoded(termType.getValue());
@@ -217,13 +210,19 @@ public class DataBean implements Serializable {
             subCategories.get(0).setDeleted(null);
             POITermType subCate=new POITermType();
             subCate.setValue(catSelected);
-            AllCategories all=new AllCategories();
-            cat.addCategory(all.getCategoryFromValue(catSelected));
+            // cat.addCategory();
             termAuthor.setValue("testAuthor");
             termAuthor.setTerm("primary");
             cat.setAuthor(termAuthor);
             cat.setCreated(new Date());
             cat.setDeleted(null);
+
+            AllCategories all=new AllCategories();
+            Category catParent=all.getCategoryFromValue(catSelected);
+            if(!catParent.getValue().equals("False_Test_$$FAiled")){
+                catParent.addCategory(cat);
+                // with post request update the catParent
+            }
 
             insertData insert = new insertData();
             String response=insert.insertCategoryJson(cat);
@@ -234,10 +233,10 @@ public class DataBean implements Serializable {
                 context.addMessage(null, new FacesMessage("Error !!"+response));
             }
 
-        }
-        else {
-            context.addMessage(null, new FacesMessage("Error !!", "Category Name is already exist"));
-        }
+//        }
+//        else {
+//            context.addMessage(null, new FacesMessage("Error !!", "Category Name is already exist"));
+//        }
 
     }
 

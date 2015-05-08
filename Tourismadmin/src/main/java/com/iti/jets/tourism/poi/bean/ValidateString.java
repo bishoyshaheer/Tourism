@@ -27,15 +27,15 @@ public class ValidateString implements Validator {
     private Matcher m;
     public ValidateString(){
         pattern = Pattern.compile(str_PATTERN);
-        p = Pattern.compile("[\\u0600-\\u06ff]");
+     //   p = Pattern.compile("[\\u0600-\\u06ff]");
 //        p = Pattern.compile("[^\\p{InArabic}a-zA-Z0-9]+");
     }
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
 
         matcher = pattern.matcher(o.toString());
-        String s=new encodeString().getStringEncoded(o.toString());
-         m = p.matcher(s.toString());
+      //  String s=new encodeString().getStringEncoded(o.toString());
+      //   m = p.matcher(s.toString());
         if (!matcher.matches()) {
             FacesMessage msg
                     = new FacesMessage("Name validation failed.",

@@ -147,8 +147,10 @@ public class AllCategories {
 //    }
 
     public Category getCategoryFromValue(String val){
+        Category test=new Category();
+        test.setValue("False_Test_$$FAiled");
         if(val.equals("") || val.equals(null)){
-            return new Category();
+            return test;
         }
         for (int i = 0; i <categories.size() ; i++) {
             if(categories.get(i).getValue().equals(val))

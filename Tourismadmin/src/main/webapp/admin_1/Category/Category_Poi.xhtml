@@ -10,8 +10,16 @@
     <ui:define name="insideformTitle">     </ui:define>
 
     <ui:define name="datacontent">
-        <h:form role="form" dir="#{label['direction']}">
+        <h:form role="form" id="form" dir="#{label['direction']}">
             <p:growl id="growlEnd" showDetail="true" sticky="true" />
+
+
+            <div class="form-group" >
+                <h:outputText value="#{label['CategoryParent']}" for="acForce"  />
+                <br/>
+                <p:autoComplete width="80%" id="acForce" dropdown="true"  value="#{data.catSelected}" completeMethod="#{data.completeText}" />
+
+            </div>
 
             <div class="form-group">
                 <h:outputText value="#{label['CategoryTerm']}" />
@@ -21,24 +29,34 @@
             </div>
 
             <div class="form-group">
+                <h:outputText value="#{label['CategoryLang']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{data.termType.lang}" id="selectMenu">
+                    <f:selectItems value="#{data.langList}" />
+                </h:selectOneMenu>
+            </div>
+
+
+            <div class="form-group">
                 <h:outputText value="#{label['CategoryLabel']}" />
                 <h:inputText styleClass="form-control" id="catLabel" value="#{data.termType.value}" required="true">
-                    <f:validator validatorId="str" />
+                    <f:validator validatorId="strArabic" />
+                    <f:validator validatorId="catValue"/>
                         </h:inputText>
                 <h:message for="catLabel" style="color:red" />
             </div>
 
             <div class="form-group">
-                <h:outputText value="#{label['CategoryLang']}" />
-                <h:selectOneMenu styleClass="form-control" value="#{data.termType.lang}">
+                <h:outputText value="#{label['LabelLang']}" />
+                <h:selectOneMenu styleClass="form-control" value="#{data.label.get(0).lang}" id="labelSelect">
                     <f:selectItems value="#{data.langList}" />
                 </h:selectOneMenu>
+
             </div>
 
             <div class="form-group">
                 <h:outputText value="#{label['LabelValue']}" />
                 <h:inputText styleClass="form-control" id="labelVal" value="#{data.label.get(0).value}" required="true">
-                    <f:validator validatorId="str" />
+                    <f:validator validatorId="strLabel" />
                         </h:inputText>
                 <h:message for="labelVal" style="color:red" />
             </div>
@@ -51,27 +69,10 @@
                 </h:selectOneMenu>
             </div>
 
-            <div class="form-group">
-                <h:outputText value="#{label['LabelLang']}" />
-                <h:selectOneMenu styleClass="form-control" value="#{data.label.get(0).lang}">
-                    <f:selectItems value="#{data.langList}" />
-                </h:selectOneMenu>
-
-            </div>
-
-
-            <div class="form-group" >
-                <h:outputText value="#{label['CategoryParent']}" for="acForce"  />
-                <br/>
-                <p:autoComplete width="80%" id="acForce" dropdown="true"  value="#{data.catSelected}" completeMethod="#{data.completeText}" />
-
-            </div>
-
-
 
             <div id="success"></div>
 
-            <p:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" update="growlEnd" action="#{data.insertData()}"/>
+            <p:commandButton styleClass="btn btn-lg btn-success btn-block" value="Submit" id="ajax" update="growlEnd" action="#{data.insertData()}"/>
         </h:form>
     </ui:define>
 
