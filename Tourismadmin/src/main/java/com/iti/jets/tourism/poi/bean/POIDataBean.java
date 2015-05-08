@@ -641,10 +641,10 @@ public class POIDataBean {
         pointofinterest.addCategory(p);
 
         // after adding map
-        System.out.println(baseTypeAdd.getValue());
+      //  System.out.println(baseTypeAdd.getValue());
         encodeString e=new encodeString();
         String y= e.getStringEncoded(label.get(0).getValue());
-        System.out.println(y+"****"+e.getStringDecoded(y));
+       // System.out.println(y+"****"+e.getStringDecoded(y));
        label.get(0).setValue(y);
         pointofinterest.addLabel(label.get(0));
         String y1= e.getStringEncoded(description.get(0).getValue());
